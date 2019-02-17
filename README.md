@@ -1,27 +1,27 @@
-# SmartMenu
+# SmartMenu - COP 4331 - Spring 2019
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
+## Team Members
 
-## Development server
+- Matthew Hafner
+- Michael Nguyen
+- Alonso Ninalaya
+- Shravan Yandra
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Vision Statement
 
-## Code scaffolding
+This project would be created for restaurant consumers and restaurant owners, that needs a website to list specific items and allow consumer feedback for restaurants. Smart Menu is a website that allows the consumer to find more details about dishes for a restaurant and leave feedback and photos. Unlike Yelp, which only lists restaurants as a whole, Smart Menu can be used to help customers get more feedback and information on what a specific food item is like before ordering (nutritional facts, size, proportions, etc). Restaurant owners can use it to get a better idea of what food items are succeeding, and what is not as popular among customers.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Sprint 1
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- [Product Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/product_backlog.md)
+- [Sprint Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/sprint_backlog.md)
+  - [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart&oq=sprint+burndown+chart)
+- [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/requirements.md)
+- Design Documents
+  - [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/architecture.md)
+  - Class Diagrams
+  - Sequence Diagrams
+  - etc.
+- Source Code
+- Test Cases
+- Product Demonstration
