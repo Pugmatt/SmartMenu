@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var products = require('./routes/products');
+var restaurants = require('./routes/restaurants');
 
 var app = express();
 
@@ -17,5 +18,6 @@ app.use(function(req, res, next) {
 });
 
 app.use('/api/products', products);
+app.use('/api/restaurants', restaurants);
 
 module.exports = app;
