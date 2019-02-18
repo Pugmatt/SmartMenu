@@ -1,5 +1,7 @@
 <ul>
-  <li *ngFor="let navItem of navItems">
-    <a routerLink="{{navItem.path}}">{{navItem.text}}</a>
-  </li>
+  <a *ngFor="let navItem of navItems" routerLink="{{navItem.path}}">
+    <li>
+      {{navItem.text}}
+    </li>
+  </a>
 </ul>
