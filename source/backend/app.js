@@ -2,9 +2,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const Sequelize = require('sequelize');
+const pg = require('pg');
 
 var products = require('./routes/products');
 var restaurants = require('./routes/restaurants');
+
+var config = require('./config');
+
+var database = require('./database');
 
 var app = express();
 
@@ -17,6 +23,39 @@ app.use(function(req, res, next) {
     next();
 });
 
+// Setup database
+const db = async function() {
+    await database.load();
+    await database.connect();
+    console.log("Loaded models");
+
+    // Create development example database items
+    if(!config.inprod) {
+        database.Restaurant.findOne({
+            where: {
+                name: "McDonalds"
+            }
+        }).then(function (obj) {
+            if (!obj) {
+                console.log("Creating example database items");
+                database.Restaurant.build({name: "McDonalds"}).save();
+            }
+        });
+    }
+};
+// If in dev mode, create a database if needed. If in production, expect one to already be made
+if(!config.inprod) {
+    const client = new pg.Client('postgres://' + config.database.user + ':' + config.database.password + '@' + config.database.host + '/postgres');
+    client.connect();
+    client.query('CREATE DATABASE smartmenu', function (err) {
+        db();
+        client.end();
+    });
+}
+else
+    db();
+
+// Setup api routes
 app.use('/api/products', products);
 app.use('/api/restaurants', restaurants);
 
