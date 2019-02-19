@@ -1,0 +1,27 @@
+#user-area {
+  position:absolute;
+  top:10px;
+  right:50px;
+}
+
+ul#login {
+  list-style-type: none;
+  margin: 20px;
+  padding: 0px;
+}
+
+li {
+  padding: 12px;
+  margin: 5px;
+  display: inline;
+  background-color: #B0C0BC;
+  border-radius: 2.5px;
+  color: #2e4756;
+  opacity: 0.7;
+  -webkit-transition: opacity 0.3s; /* For Safari 3.1 to 6.0 */
+  transition: opacity 0.3s;
+}
+
+li:hover {
+  opacity: 1;
+}
