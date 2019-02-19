@@ -11,6 +11,3 @@ NOTE: The members in the group were learning how to work with the programming la
 | 004 | As a user, I want to see the logo of the company, so the design of the site is more pleasing to look at. | LOW | Matthew |
 | 005 | As a user, I want a list of all restaurants listed, so I can see the variety of options for restaurants available. | HIGH | Matthew |
 
-
-
-Additional examples can be found on [Google](https://www.google.com/search?q=sprint+backlog+examples&tbm=isch)
