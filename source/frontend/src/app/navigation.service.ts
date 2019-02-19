@@ -11,6 +11,7 @@ export class NavigationService {
   constructor() {
   }
 
+  // Retrieve list of items on navigation list from constant list
   public get(): Observable<NavItem[]> {
     return of(NAVLIST);
   }

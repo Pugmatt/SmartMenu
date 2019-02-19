@@ -13,6 +13,8 @@ var config = require('./config');
 
 var database = require('./database');
 
+// Setup web server
+
 var app = express();
 
 app.use(bodyParser.json());

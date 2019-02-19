@@ -6,8 +6,7 @@ const database = require("../database.js");
 /* GET restaurant listing. */
 router.get('/', function(req, res, next) {
   database.Restaurant.findAll({raw: true}).then(function(restaurants) {
-
-      // Remove id from info
+      // Remove index from info
       for(var i=0;i<restaurants.length;i++) {
         delete restaurants[0].index;
       }

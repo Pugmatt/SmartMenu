@@ -9,7 +9,7 @@ import {NavItem} from '../nav-item';
 })
 export class NavigationComponent implements OnInit {
 
-  navItems: NavItem[];
+  navItems: NavItem[]; // Full list of navigation items
 
   constructor(private navigationService: NavigationService) { }
 
@@ -17,6 +17,7 @@ export class NavigationComponent implements OnInit {
     this.getNavItems();
   }
 
+  // Retrieve navigation items from navigation service
   private getNavItems(): void {
     this.navigationService.get()
       .subscribe(items => this.navItems = items);

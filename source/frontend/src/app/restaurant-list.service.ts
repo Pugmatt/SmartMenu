@@ -12,6 +12,7 @@ export class RestaurantListService {
 
   constructor(private http: HttpClient) { }
 
+  // Retrieve list of restaurants from API
   public getRestaurants (): Observable<Restaurant[]> {
     return this.http.get<Restaurant[]>(this.url)
   }

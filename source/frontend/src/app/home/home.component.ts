@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(private restaurantListService: RestaurantListService) { }
 
   ngOnInit() {
+    // Retrieve list of restaurants on creation of home component
     this.restaurantListService.getRestaurants()
       .subscribe(restaurants => this.restaurants = restaurants);
   }

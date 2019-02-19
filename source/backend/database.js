@@ -4,6 +4,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const config = require('./config');
 
+// Initialize Sequelize
 const sequelize = new Sequelize("smartmenu", config.database.user, config.database.password, {
     host: config.database.host,
     dialect: 'postgres',
@@ -43,6 +44,10 @@ database.connect = async () => {
     });
 };
 
+/**
+ * Loads database definition models in /models
+ * @returns {Promise}
+ */
 database.load = async () => {
     console.log("Loading models...");
 
