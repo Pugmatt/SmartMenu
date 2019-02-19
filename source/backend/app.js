@@ -7,6 +7,7 @@ const pg = require('pg');
 
 var products = require('./routes/products');
 var restaurants = require('./routes/restaurants');
+var restaurantPicture = require('./routes/restaurant-picture');
 
 var config = require('./config');
 
@@ -33,12 +34,14 @@ const db = async function() {
     if(!config.inprod) {
         database.Restaurant.findOne({
             where: {
-                name: "McDonalds"
+                name: "Five Guys"
             }
         }).then(function (obj) {
             if (!obj) {
                 console.log("Creating example database items");
-                database.Restaurant.build({name: "McDonalds"}).save();
+                database.Restaurant.build({name: "McDonalds", id: "adaj327"}).save();
+                database.Restaurant.build({name: "Taco Bell", id: "adae32d"}).save();
+                database.Restaurant.build({name: "Five Guys", id: "ej73fe"}).save();
             }
         });
     }
@@ -58,5 +61,6 @@ else
 // Setup api routes
 app.use('/api/products', products);
 app.use('/api/restaurants', restaurants);
+app.use('/api/images/restaurant/', restaurantPicture);
 
 module.exports = app;

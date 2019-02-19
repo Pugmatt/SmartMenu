@@ -31,7 +31,7 @@ const database = {
 database.connect = async () => {
     return new Promise((resolve, reject) => {
         const tryConnect = () => {
-            sequelize.sync().then(() => {
+            sequelize.sync({}).then(() => {
                 console.log("Connected and synced to database.");
                 resolve();
             }, (err) => {

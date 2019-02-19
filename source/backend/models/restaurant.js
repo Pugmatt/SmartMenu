@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     const Restaurant = sequelize.define("Restaurant", {
-        id: {
+        index: {
             type: DataTypes.INTEGER,
             unique: true,
             autoIncrement: true,
@@ -10,7 +10,8 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW
         },
-        name: DataTypes.TEXT
+        id: DataTypes.TEXT,
+        name: DataTypes.TEXT,
     }, {
         tableName: 'restaurants',
         timestamps: false,

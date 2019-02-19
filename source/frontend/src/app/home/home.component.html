@@ -1,1 +1,8 @@
-<h3>This is the homepage</h3>
+
+  <input id="search" placeholder="Restaurant, Food Item"/>
+  <input id="location_search" placeholder="Location"/>
+  <div class="horizontal">
+    <p *ngFor="let restaurant of restaurants">
+        <app-restaurant-element [restaurant]="restaurant"></app-restaurant-element>
+    </p>
+  </div>

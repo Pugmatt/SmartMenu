@@ -1,0 +1,24 @@
+.restaurants {
+  display: table;   /* Allow the centering to work */
+  margin: 0 auto;
+}
+
+.horizontal {
+  display: flex;
+  flex-wrap:wrap;
+}
+
+p {
+  display: inline-block;
+  flex-grow: 1;
+}
+
+input {
+  border-radius: 2.5px;
+  height: 35px;
+
+  width: 250px;
+}
+input#search {
+  width: 350px;
+}

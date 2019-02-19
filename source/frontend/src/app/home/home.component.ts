@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {NavigationService} from "../navigation.service";
+import {RestaurantListService} from "../restaurant-list.service";
+import {Restaurant} from "../restaurant";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  restaurants: Restaurant[];
+
+  constructor(private restaurantListService: RestaurantListService) { }
 
   ngOnInit() {
+    this.restaurantListService.getRestaurants()
+      .subscribe(restaurants => this.restaurants = restaurants);
   }
 
 }
