@@ -13,15 +13,15 @@ This project would be created for restaurant consumers and restaurant owners, th
 
 # Sprint 1
 
-- [Product Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/product_backlog.md)
-- [Sprint Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/sprint_backlog.md)
-  - [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart&oq=sprint+burndown+chart)
-- [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/requirements.md)
+- [Product Backlog](https://github.com/smart-menu/SmartMenu/blob/master/sprint1/product_backlog.md)
+- [Sprint Backlog](https://github.com/smart-menu/SmartMenu/blob/master/sprint1/sprint_backlog.md)
+  - [Burndown Chart](https://github.com/smart-menu/SmartMenu/blob/master/sprint1/burndown_chart.png)
+- [Requirements](https://github.com/smart-menu/SmartMenu/blob/master/sprint1/requirements.md)
 - Design Documents
   - [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/architecture.md)
   - Class Diagrams
   - Sequence Diagrams
   - etc.
-- Source Code
+- [Source Code](https://github.com/smart-menu/SmartMenu/tree/master/source)
 - Test Cases
-- Product Demonstration
+- [Product Demonstration](https://www.youtube.com/watch?v=zdfCHxp8Xn0)
