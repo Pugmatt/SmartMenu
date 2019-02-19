@@ -37,3 +37,4 @@
 | 032 | As a restaurant owner, I want a remove picture button, so I can remove any previous picture of the dish. | HIGH | WORKING |
 | 033 | As a restaurant owner, I want a menu of the food items of my restaurants so that users can get a much better idea of what they want to consume. | HIGH | WORKING |
 | 034 | As a user, I want to see the logo of the company, so the design of the site is more pleasing to look at. | LOW | WORKING |
+| 035 | As a user, I want a list of all restaurants listed, so I can see the variety of options for restaurants available. | HIGH | WORKING |
