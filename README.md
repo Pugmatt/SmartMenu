@@ -19,7 +19,7 @@ This project would be created for restaurant consumers and restaurant owners, th
 - [Requirements](https://github.com/smart-menu/SmartMenu/blob/master/sprint1/requirements.md)
 - Design Documents
   - [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/architecture.md)
-  - Class Diagrams
+  - [Class Diagrams](https://github.com/smart-menu/SmartMenu/blob/master/SmartMenuClassDiagram.jpg)
   - Sequence Diagrams
   - etc.
 - [Source Code](https://github.com/smart-menu/SmartMenu/tree/master/source)
