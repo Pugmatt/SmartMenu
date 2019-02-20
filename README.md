@@ -18,10 +18,12 @@ This project would be created for restaurant consumers and restaurant owners, th
   - [Burndown Chart](https://github.com/smart-menu/SmartMenu/blob/master/sprint1/burndown_chart.png)
 - [Requirements](https://github.com/smart-menu/SmartMenu/blob/master/sprint1/requirements.md)
 - Design Documents
-  - [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/architecture.md)
+  - [System Architecture](https://docs.google.com/document/d/1am3hKZklIUwVaivHIaXepfbZmhsTSvsYJtw2n1GcIj8/edit?usp=sharing)
   - [Class Diagrams](https://github.com/smart-menu/SmartMenu/blob/master/SmartMenuClassDiagram.jpg)
-  - Sequence Diagrams
-  - etc.
 - [Source Code](https://github.com/smart-menu/SmartMenu/tree/master/source)
 - Test Cases
+
+  Automatic: Testing can ran through the frontend by running the command "ng test"
+  
+  [Manual](https://docs.google.com/document/d/11ZFe2Jn7rRdRMsQM2DGRxcNDCx3y0cIJSh3rldsyrtc/edit?usp=sharing)
 - [Product Demonstration](https://www.youtube.com/watch?v=zdfCHxp8Xn0)
