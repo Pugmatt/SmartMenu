@@ -19,7 +19,7 @@ This project would be created for restaurant consumers and restaurant owners, th
 - [Requirements](https://github.com/smart-menu/SmartMenu/blob/master/sprint1/requirements.md)
 - Design Documents
   - [System Architecture](https://docs.google.com/document/d/1am3hKZklIUwVaivHIaXepfbZmhsTSvsYJtw2n1GcIj8/edit?usp=sharing)
-  - [Class Diagrams](https://github.com/smart-menu/SmartMenu/blob/master/SmartMenuClassDiagram.jpg)
+  - [Class Diagrams](https://github.com/smart-menu/SmartMenu/blob/master/sprint1/SmartMenuClassDiagram.jpg)
 - [Source Code](https://github.com/smart-menu/SmartMenu/tree/master/source)
 - Test Cases
 
