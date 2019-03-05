@@ -3,11 +3,11 @@
 NOTE: The members in the group were learning how to work with the programming language and Angular. The setup of the project was taken care of by Matthew, which is why all Owners show as Matthew, but while also showing the process to team members to make sure everyone is on the same page and knows how to work with the development environment. Team members were still involved with development. Now that all team members know how to use the development languages and tools, sprints after this one will contain user story Owners containing all members of the group. 
 
 | ID | User Story | Effort | Priority | Validation Criteria | Owner |
-|----|---------------|--------|-----|-----------|--------|
+|----|------------------|--------|-----|---------|----------|
 | 001 | As a user, I want to be able to search for restaurants and food items. | 5 | HIGH | Valid input includes alphabetical and numerical characters. | Matthew Hafner |
-| 002 | As a user, I want to be able to be able to specify a location, so I can find restaurants around that specific location. | 2 | MEDIUM | Valid input includes cities and states. | TO-DO | Matthew Hafner |
+| 002 | As a user, I want to be able to be able to specify a location, so I can find restaurants around that specific location. | 2 | MEDIUM | Valid input includes cities and states. | Matthew Hafner |
 | 006 | As a user, I want to be able to choose what position I am before I register, so I can differentiate between a restaurant owner or consumer. | 2 | MEDIUM | User will be able to register under the role of a restaurant owner or consumer, but not as website staff roles. | Alonso Ninalaya |
-| 007 | As a restaurant owner, I want to link my email, so I can get updates about my restaurant when offline. | 7 | MEDIUM | Email must be a valid email address. | TO-DO | Matthew Hafner |
+| 007 | As a restaurant owner, I want to link my email, so I can get updates about my restaurant when offline. | 7 | MEDIUM | Email must be a valid email address. | Matthew Hafner |
 | 008 | As a restaurant owner, I want to fill in details about my restaurant, so I can attach it to my account. | 6 | HIGH | Details the user enters must use valid characters and images and be under 2000 characters. | Michael Nguyen |
 | 010 | As a consumer, I want to create my own profile, so I can have a name for myself when leaving feedback and interact with the website more personally. | 8 | HIGH | Profile names must contain only alphabetical and numerical values. | Matthew Hafner |
 | 011 | As a consumer, I want to be able to search for specific dishes. | 5 | HIGH | Valid input includes alphabetical and numerical characters. | Alonso Ninalaya |
