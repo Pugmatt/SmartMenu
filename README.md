@@ -19,7 +19,7 @@ This project would be created for restaurant consumers and restaurant owners, th
 - [Requirements](https://github.com/smart-menu/SmartMenu/blob/master/sprint1/requirements.md)
 - Design Documents
   - [System Architecture](https://docs.google.com/document/d/1am3hKZklIUwVaivHIaXepfbZmhsTSvsYJtw2n1GcIj8/edit?usp=sharing)
-  - [Class Diagrams](https://github.com/smart-menu/SmartMenu/blob/master/SmartMenuClassDiagram.jpg)
+  - [Class Diagrams](https://github.com/smart-menu/SmartMenu/blob/master/sprint1/SmartMenuClassDiagram.jpg)
 - [Source Code](https://github.com/smart-menu/SmartMenu/tree/master/source)
 - Test Cases
 
@@ -27,3 +27,20 @@ This project would be created for restaurant consumers and restaurant owners, th
   
   [Manual](https://docs.google.com/document/d/11ZFe2Jn7rRdRMsQM2DGRxcNDCx3y0cIJSh3rldsyrtc/edit?usp=sharing)
 - [Product Demonstration](https://www.youtube.com/watch?v=zdfCHxp8Xn0)
+
+# Sprint 2
+
+- [Product Backlog](https://github.com/smart-menu/SmartMenu/blob/master/sprint2/product_backlog.md)
+- [Sprint Backlog](https://github.com/smart-menu/SmartMenu/blob/master/sprint2/sprint_backlog.md)
+  - Burndown Chart
+- [Requirements](https://github.com/smart-menu/SmartMenu/blob/master/sprint2/requirements.md)
+- Design Documents
+  - [System Architecture](https://docs.google.com/document/d/1am3hKZklIUwVaivHIaXepfbZmhsTSvsYJtw2n1GcIj8/edit?usp=sharing)
+  - [Class Diagrams](https://github.com/smart-menu/SmartMenu/blob/master/sprint2/SmartMenuClassDiagram.jpg)
+- [Source Code](https://github.com/smart-menu/SmartMenu/tree/master/source)
+- Test Cases
+
+  Automatic: Testing can ran through the frontend by running the command "ng test"
+
+  [Manual](https://docs.google.com/document/d/11ZFe2Jn7rRdRMsQM2DGRxcNDCx3y0cIJSh3rldsyrtc/edit?usp=sharing)
+- Product Demonstration
