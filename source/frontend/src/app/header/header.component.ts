@@ -9,6 +9,10 @@ import {NavigationService} from '../navigation.service';
 })
 export class HeaderComponent implements OnInit {
 
+  login(): void {
+    
+  }
+
   constructor() { }
 
   ngOnInit() {
