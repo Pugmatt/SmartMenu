@@ -9,7 +9,8 @@ import {NavigationService} from '../navigation.service';
 })
 export class HeaderComponent implements OnInit {
 
-  login(): void {
+  register(): void {
+    
     
   }
 

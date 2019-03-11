@@ -12,6 +12,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { RestaurantElementComponent } from './restaurant-element/restaurant-element.component';
 import { RegisterComponent } from './register/register.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     ProductListComponent,
     RestaurantElementComponent,
-    RegisterComponent,
+    RegisterComponent
+   
   ],
   imports: [
     BrowserModule,
