@@ -4,6 +4,10 @@
   right:50px;
 }
 
+button {
+  margin: 5px;
+}
+
 ul#login {
   list-style-type: none;
   margin: 20px;
