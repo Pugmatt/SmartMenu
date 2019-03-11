@@ -1,6 +1,13 @@
 
-  <input id="search" placeholder="Restaurant, Food Item"/>
-  <input id="location_search" placeholder="Location"/>
+  <form class="search-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Restaurant, Food Item"/>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="City, ZIP"/>
+    </mat-form-field>
+    <button mat-raised-button>Search</button>
+  </form>
   <div class="horizontal">
     <p *ngFor="let restaurant of restaurants">
         <app-restaurant-element [restaurant]="restaurant"></app-restaurant-element>

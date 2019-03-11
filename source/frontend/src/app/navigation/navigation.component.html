@@ -1,7 +1,7 @@
-<ul>
+<div id="navigation">
   <a *ngFor="let navItem of navItems" routerLink="{{navItem.path}}">
-    <li>
+    <button mat-raised-button color="primary">
       {{navItem.text}}
-    </li>
+    </button>
   </a>
-</ul>
+</div>
