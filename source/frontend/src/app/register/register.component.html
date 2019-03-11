@@ -1,3 +1,93 @@
-<p>
-  register works!
-</p>
+<div class="radio">  
+            <label>  
+                <input type="radio" name="user" value="Consumer" (click)="setradio('Consumer')" [checked]='true' ngModel>  
+                Consumer  
+            </label>  
+        </div>  
+        <div class="radio">  
+            <label>  
+                <input type="radio" name="user" value="Restaurant owner" (click)="setradio('Restaurant owner')" ngModel>  
+                Resturant's Owner
+            </label>  
+        </div>  
+  
+<div *ngIf="isSelected('Consumer')" >  
+   
+   
+    <div class="form-group">
+        <label for="firstName">First Name </label>
+        <input id="firstName" type="text" class="form-control"
+               name="firstName" [(ngModel)]="firstName">
+      </div>
+
+
+     <div class="form-group">
+         <label for="lastName">Last Name </label>
+         <input id="lastName" type="text" class="form-control"
+               name="lastName" [(ngModel)]="lastName">
+      </div>
+  
+
+      <div class="form-group">
+        <label for="email">Email </label>
+        <input id="email" type="text" class="form-control"
+               name="email" [(ngModel)]="email">
+      </div>
+
+
+      <div class="panel-footer">
+          <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+
+     
+    </div>
+
+
+
+
+
+
+  
+   <div *ngIf="isSelected('Restaurant owner')">  
+
+
+      <div class="form-group">
+          <label for="firstName">First Name </label>
+          <input id="firstName" type="text" class="form-control"
+                 name="firstName" [(ngModel)]="firstName">
+        </div>
+  
+  
+       <div class="form-group">
+           <label for="lastName">Last Name </label>
+           <input id="lastName" type="text" class="form-control"
+                 name="lastName" [(ngModel)]="lastName">
+        </div>
+    
+  
+        <div class="form-group">
+          <label for="email">Email </label>
+          <input id="email" type="text" class="form-control"
+                 name="email" [(ngModel)]="email">
+        
+                </div>
+
+        <div class="form-group">
+           <label for="companyName">Company's Name </label>
+              <input id="companyName" type="text" class="form-control"
+                   name="companyName" [(ngModel)]="companyName">
+                 </div>       
+                 
+                 
+                 <div class="panel-footer">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                  </div>
+          
+
+        
+
+
+
+
+    
+   </div> 
