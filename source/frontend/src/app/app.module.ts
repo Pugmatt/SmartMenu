@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { SearchComponent } from './search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
+import { SearchBoxComponent } from './home/search-box/search-box.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
     RestaurantElementComponent,
     RegisterComponent,
     SearchComponent,
+    SearchBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

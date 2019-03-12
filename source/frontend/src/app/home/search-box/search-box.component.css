@@ -1,0 +1,15 @@
+input {
+    border-radius: 2.5px;
+    height: 35px;
+  
+    width: 250px;
+  }
+  input#search {
+    width: 350px;
+    margin: 10px;
+  
+  }
+  .search-form button{
+    margin-left: 10px;
+  }
+  

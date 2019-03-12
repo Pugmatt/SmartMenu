@@ -4,7 +4,8 @@ var router = express.Router();
 const database = require("../database.js");
 
 /* GET restaurant listing. */
-router.get('/', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
+  console.log(req.params);
   database.Restaurant.findAll({raw: true}).then(function(restaurants) {
       // Remove index from info
       for(var i=0;i<restaurants.length;i++) {
