@@ -2,6 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
+import {Restaurant} from "../restaurant";
+
+import {RestaurantSearchService} from "./restaurant-search.service";
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -11,22 +15,31 @@ export class SearchComponent implements OnInit {
 
   restaurant: String;
   location: String;
-  resultsCount: String;
+  resultsString: String;
 
-  constructor(route: ActivatedRoute) {
+  restaurants: Restaurant[];
+
+  constructor(route: ActivatedRoute,
+    private restaurantSearchService: RestaurantSearchService) {
     this.restaurant = route.snapshot.params.restaurant;
     this.location = route.snapshot.params.location;
 
-    this.resultsCount = "1 results for ";
+    this.resultsString = " result(s) for ";
     if(!this.restaurant || this.restaurant == "all")
-      this.resultsCount += "\"" + this.location + "\"";
+      this.resultsString += "\"" + this.location + "\"";
     else if(!this.location)
-      this.resultsCount += "\"" + this.restaurant + "\"";
+      this.resultsString += "\"" + this.restaurant + "\"";
     else
-      this.resultsCount += "\"" + this.restaurant + "\" in \"" + this.location + "\"";
+      this.resultsString += "\"" + this.restaurant + "\" in \"" + this.location + "\"";
+  }
+
+  searchRestaurants(query: String) {
+    this.restaurantSearchService.getRestaurants(query)
+    .subscribe(restaurants => this.restaurants = restaurants);
   }
 
   ngOnInit() {
+    this.searchRestaurants(this.restaurant + " " + this.location);
   }
 
 }

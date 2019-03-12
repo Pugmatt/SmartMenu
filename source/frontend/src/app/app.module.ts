@@ -17,6 +17,7 @@ import { SearchComponent } from './search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SearchBoxComponent } from './home/search-box/search-box.component';
 
 @NgModule({
@@ -39,6 +40,7 @@ import { SearchBoxComponent } from './home/search-box/search-box.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     FormsModule
   ],
   providers: [],
