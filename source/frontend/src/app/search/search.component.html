@@ -1,6 +1,6 @@
 <mat-progress-spinner *ngIf="!restaurants"></mat-progress-spinner>
+<div id="result-count">{{(restaurants ? restaurants.length : 0)}} {{resultsString}}</div>
 <div *ngIf="restaurants">
-    <div id="result-count" *ngIf="restaurants">{{restaurants.length}} {{resultsString}}</div>
     <p *ngFor="let restaurant of restaurants">
         <app-restaurant-element [restaurant]="restaurant"></app-restaurant-element>
     </p>
