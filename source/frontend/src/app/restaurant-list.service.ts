@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable} from "rxjs";
-import {Restaurant} from "./restaurant";
+import { Observable } from "rxjs";
+import { Restaurant } from "./restaurant";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class RestaurantListService {
 
   // Retrieve list of restaurants from API
   public getRestaurants (): Observable<Restaurant[]> {
-    return this.http.get<Restaurant[]>(this.url)
+    return this.http.get<Restaurant[]>(this.url);
   }
 
 }
