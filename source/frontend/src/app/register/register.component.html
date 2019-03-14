@@ -1,93 +1,66 @@
-<div class="radio">  
-            <label>  
-                <input type="radio" name="user" value="Consumer" (click)="setradio('Consumer')" [checked]='true' ngModel>  
-                Consumer  
-            </label>  
-        </div>  
-        <div class="radio">  
-            <label>  
-                <input type="radio" name="user" value="Restaurant owner" (click)="setradio('Restaurant owner')" ngModel>  
-                Resturant's Owner
-            </label>  
-        </div>  
-  
-<div *ngIf="isSelected('Consumer')" >  
-   
-   
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="Consumer">
+    <mat-button-toggle value="Consumer" (click)="setradio('Consumer')">Consumer</mat-button-toggle>
+    <mat-button-toggle value="Restaurant owner" (click)="setradio('Restaurant owner')">Restaurant Owner</mat-button-toggle>
+</mat-button-toggle-group>
+ <form (ngSubmit)="onSubmit(register, true)" #register="ngForm" *ngIf="isSelected('Consumer')">
     <div class="form-group">
-        <label for="firstName">First Name </label>
-        <input id="firstName" type="text" class="form-control"
-               name="firstName" [(ngModel)]="firstName">
-      </div>
-
-
+       <label for="firstName" >Name </label>
+       <input id="firstName" type="text" class="form-control"
+       name="firstName" placeholder="First" ngModel required>
+       <input id="lastName" type="text" class="form-control"
+       name="lastName" placeholder="Last" style="margin-left: 5px;" ngModel required>
+    </div>
+    <div class="form-group">
+       <label for="email">Email </label>
+       <input id="email" type="text" class="form-control"
+       name="email" ngModel required>
+    </div>
+    <div class="form-group">
+        <label for="username">Username </label>
+        <input id="username" type="text" class="form-control" 
+        name="username" ngModel required>
+     </div>
      <div class="form-group">
-         <label for="lastName">Last Name </label>
-         <input id="lastName" type="text" class="form-control"
-               name="lastName" [(ngModel)]="lastName">
-      </div>
-  
-
-      <div class="form-group">
+        <label for="pass">Password </label>
+        <input id="pass" type="password" class="form-control"
+        name="pass" ngModel required>
+     </div>
+    <div class="panel-footer">
+       <button class="btn btn-primary" type="submit" mat-raised-button>Register</button>
+    </div>
+</form>
+<form (ngSubmit)="onSubmit(register, false)" #register="ngForm" *ngIf="isSelected('Restaurant owner')">
+    <div class="form-group">
+        <label for="firstName" >Owner's Name </label>
+        <input id="firstName" type="text" class="form-control"
+        name="firstName" placeholder="First" ngModel>
+        <input id="lastName" type="text" class="form-control"
+        name="lastName" placeholder="Last" style="margin-left: 5px;" ngModel required>
+     </div>
+     <div class="form-group">
         <label for="email">Email </label>
         <input id="email" type="text" class="form-control"
-               name="email" [(ngModel)]="email">
-      </div>
-
-
-      <div class="panel-footer">
-          <button class="btn btn-primary" type="submit">Save</button>
-        </div>
-
-     
-    </div>
-
-
-
-
-
-
-  
-   <div *ngIf="isSelected('Restaurant owner')">  
-
-
+        name="email" ngModel required>
+     </div>
       <div class="form-group">
-          <label for="firstName">First Name </label>
-          <input id="firstName" type="text" class="form-control"
-                 name="firstName" [(ngModel)]="firstName">
-        </div>
-  
-  
-       <div class="form-group">
-           <label for="lastName">Last Name </label>
-           <input id="lastName" type="text" class="form-control"
-                 name="lastName" [(ngModel)]="lastName">
-        </div>
-    
-  
-        <div class="form-group">
-          <label for="email">Email </label>
-          <input id="email" type="text" class="form-control"
-                 name="email" [(ngModel)]="email">
-        
-                </div>
-
-        <div class="form-group">
-           <label for="companyName">Company's Name </label>
-              <input id="companyName" type="text" class="form-control"
-                   name="companyName" [(ngModel)]="companyName">
-                 </div>       
-                 
-                 
-                 <div class="panel-footer">
-                    <button class="btn btn-primary" type="submit">Save</button>
-                  </div>
-          
-
-        
-
-
-
-
-    
-   </div> 
+         <label for="pass">Password </label>
+         <input id="pass" type="password" class="form-control"
+         name="pass" ngModel required>
+      </div>
+     <div class="form-group">
+         <label for="companyName">Company's Name </label>
+         <input id="companyName" type="text" class="form-control"
+         name="companyName" ngModel required>
+      </div>
+      <div class="form-group">
+         <p>
+             <label for="companyName">Company Description </label>
+         </p>
+         <textarea id="companyDesc" class="form-control"
+         name="companyDesc" ngModel rows="10" cols="50" required></textarea>
+      </div>
+     <div class="panel-footer">
+        <button class="btn btn-primary" type="submit" mat-raised-button>Register</button>
+     </div>
+</form>
+<p id="error" *ngIf="error">{{error}}</p>

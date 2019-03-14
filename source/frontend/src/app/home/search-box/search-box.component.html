@@ -1,0 +1,9 @@
+<form (ngSubmit)="onSubmit(search)" #search="ngForm" class="search-form">
+    <mat-form-field>
+      <input type="text" name="restaurant" ngModel matInput placeholder="Restaurant, Food Item" />
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" name="location" ngModel matInput placeholder="City, ZIP"/>
+    </mat-form-field>
+    <button type="submit" mat-raised-button>Search</button>
+</form>

@@ -28,15 +28,14 @@ import { RestaurantPageComponent } from './restaurant-page/restaurant-page.compo
     RestaurantElementComponent,
     RegisterComponent,
     SearchComponent,
-    RestaurantPageComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
     BrowserAnimationsModule,
- 
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
