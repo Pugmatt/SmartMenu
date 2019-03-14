@@ -12,8 +12,9 @@ import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { RestaurantElementComponent } from './restaurant-element/restaurant-element.component';
 import { RegisterComponent } from './register/register.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './search/search.component';
+import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
 
 
 @NgModule({
@@ -27,12 +28,14 @@ import { SearchComponent } from './search/search.component';
     RestaurantElementComponent,
     RegisterComponent,
     SearchComponent,
+    RestaurantPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
  
   ],
   providers: [],
