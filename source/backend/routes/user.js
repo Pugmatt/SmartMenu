@@ -1,11 +1,22 @@
 var express = require('express');
+var passport = require('passport');
 var router = express.Router();
 
+/* */
 const database = require("../database.js");
 
-/* GET restaurant listing. */
+/* Authenticate user */
+router.post('/login', passport.authenticate('local'), function(req, res, next) {
+  if(typeof req.user == 'string') {
+    res.json({err: req.user});
+  }
+  else {
+    res.json({user: req.user});
+  }
+});
+
+/* POST register new user */
 router.post('/create', function(req, res, next) {
-  console.log(req.body);
   if(req.body && req.body.consumer && req.body.username && req.body.password && req.body.email && req.body.firstname && req.body.lastname) {
     
     var valid = infoValid(req.body);
@@ -13,7 +24,7 @@ router.post('/create', function(req, res, next) {
     if(valid != "y")
       res.json({error: valid});
     else {
-      database.User.find({
+      database.User.findOne({
         where: {
           username: req.body.username
         }

@@ -4,6 +4,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 const pg = require('pg');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+
+var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 var products = require('./routes/products');
 var restaurants = require('./routes/restaurants');
@@ -26,12 +31,45 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
+app.use(passport.initialize());
+app.use(passport.session());
 // Setup database
 const db = async function() {
     await database.load();
     await database.connect();
     console.log("Loaded models");
+
+    // Setup passport strategy
+    passport.use(new LocalStrategy({usernameField: "email"},
+        function(username, password, done) {
+          database.User.authenticate(username, password, function(err, user) {
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            return done(null, user);
+          });
+        }
+    ));
+
+    passport.serializeUser(function(user, done) {
+        done(null, user.index);
+    });
+      
+    passport.deserializeUser(function(id, done) {
+        database.User.findById(id, function (err, user) {
+          done(err, user);
+        });
+    });
+
+    var seqSessions = new SequelizeStore({
+        db: database.db
+    });
+    app.use(session({
+        secret: 'dsj8w32djw1',
+        store: seqSessions,
+        resave: false, // we support the touch method so per the express-session docs this should be set to false
+        proxy: true // if you do SSL outside of node.
+    }));
+    seqSessions.sync();
 
     // Create development example database items
     if(!config.inprod) {
@@ -53,9 +91,9 @@ const db = async function() {
 if(!config.inprod) {
     const client = new pg.Client('postgres://' + config.database.user + ':' + config.database.password + '@' + config.database.host + '/postgres');
     client.connect();
-    client.query('CREATE DATABASE smartmenu', function (err) {
+    client.query('CREATE DATABASE smartmenu', function () {
         db();
-        client.end();
+        client.end(); 
     });
 }
 else

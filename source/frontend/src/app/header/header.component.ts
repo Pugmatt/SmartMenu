@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {NavItem} from '../nav-item';
 import {NavigationService} from '../navigation.service';
 
+import { LoginComponent } from '../login/login.component';
+
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,11 +13,13 @@ import {NavigationService} from '../navigation.service';
 })
 export class HeaderComponent implements OnInit {
 
-  login(): void {
-    
-  }
+  constructor(public dialog: MatDialog) { }
 
-  constructor() { }
+  login(): void {
+    let dialogRef = this.dialog.open(LoginComponent, {
+
+    });
+  }
 
   ngOnInit() {
   }

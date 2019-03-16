@@ -19,7 +19,9 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
 import { SearchBoxComponent } from './home/search-box/search-box.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { SearchBoxComponent } from './home/search-box/search-box.component';
     RegisterComponent,
     SearchComponent,
     SearchBoxComponent,
+    LoginComponent,
   ],
+  entryComponents: [LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -43,6 +47,7 @@ import { SearchBoxComponent } from './home/search-box/search-box.component';
     MatInputModule,
     MatProgressSpinnerModule,
     MatButtonToggleModule,
+    MatDialogModule,
     FormsModule
   ],
   providers: [],

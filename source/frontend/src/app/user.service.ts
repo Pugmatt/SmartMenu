@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs";
+import { catchError, map, tap } from 'rxjs/operators';
 import { User } from "./user";
 
 @Injectable({
@@ -14,6 +15,12 @@ export class UserService {
 
   register (user: User): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(this.url + "/create", user, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
+  }
+
+  login (user: User): Observable<RegisterResponse> {
+    return this.http.post<RegisterResponse>(this.url + "/login", user, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
   }
