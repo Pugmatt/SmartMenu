@@ -2,8 +2,27 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 
+const func = require('../functions.js');
+
 /* */
 const database = require("../database.js");
+
+
+/* GET user information if logged in. */
+router.get('/get', func.isLoggedIn, function(req, res, next) {
+  res.json({ user: {
+    username: req.user.username,
+    firstname: req.user.firstname,
+    lastname: req.user.lastname,
+    email: req.user.email,
+  }});
+});
+
+router.get('/logout', func.isLoggedIn, function(req, res, next) {
+  req.logout();
+  res.json({ user: "done" });
+});
+
 
 /* Authenticate user */
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
@@ -11,7 +30,12 @@ router.post('/login', passport.authenticate('local'), function(req, res, next) {
     res.json({err: req.user});
   }
   else {
-    res.json({user: req.user});
+    res.json({ user: {
+      username: req.user.username,
+      firstname: req.user.firstname,
+      lastname: req.user.lastname,
+      email: req.user.email,
+    }});
   }
 });
 
@@ -47,7 +71,7 @@ router.post('/create', function(req, res, next) {
                 email: req.body.email,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname
-              }).save().then(function() { res.json({user: "success"}); });
+              }).save().then(function(user) { authenticate(user, res, req); });
             }
           });
         }
@@ -73,7 +97,7 @@ router.post('/create', function(req, res, next) {
           firstname: req.body.firstname,
           lastname: req.body.lastname,
           restaurant: restaurant.index,
-        }).save().then(function() { res.json({user: "success"}); });
+        }).save().then(function() { authenticate(user, res, req); });
       });
     }
   }
@@ -124,6 +148,24 @@ function infoValid(body) {
 
   return "y";
 } 
+
+// Authenticate user
+function authenticate(user, res, req) {
+  // Login with passed in user object
+  req.login(user, function(err) {
+    if(typeof user == 'string') {
+      return res.json({err: user});
+    }
+    else {
+      res.json({ user: {
+        username: user.username,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+      }});
+    }
+  });
+}
 
 function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

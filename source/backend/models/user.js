@@ -33,8 +33,7 @@ module.exports = function(sequelize, DataTypes) {
         User.findOne({ where: { index: id } })
         .then(function (user) {
           if (!user) {
-            var err = new Error('User not found.');
-            err.status = 401;
+            var err = "User does not exist";
             return callback(err);
           }
           else {

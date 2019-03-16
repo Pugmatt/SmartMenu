@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
         if(msg.error)
           this.error = msg.error;
         else {
+          this.userService.user = msg.user;
           this.dialogRef.close();
         }
       }, error => {

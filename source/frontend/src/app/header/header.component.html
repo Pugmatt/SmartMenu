@@ -1,6 +1,10 @@
-<div id="user-area">
+<div id="user-area" *ngIf="!user()">
   <button mat-stroked-button (click)="login()">Login</button>
   <button routerLink="/register" mat-stroked-button>Register</button>
+</div>
+<div id="user-area" *ngIf="user()">
+  Welcome back, {{user().username}}
+  <button mat-stroked-button (click)="logout()">Logout</button>
 </div>
 <img src="/assets/logo.png"/>
 <app-navigation></app-navigation>

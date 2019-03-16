@@ -11,6 +11,8 @@ export class UserService {
 
   private url = 'api/user';
 
+  public user;
+
   constructor(private http: HttpClient) { }
 
   register (user: User): Observable<RegisterResponse> {
@@ -23,6 +25,14 @@ export class UserService {
     return this.http.post<RegisterResponse>(this.url + "/login", user, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
+  }
+
+  get (): Observable<RegisterResponse> {
+    return this.http.get<RegisterResponse>(this.url + "/get");
+  }
+
+  logout (): Observable<RegisterResponse> {
+    return this.http.get<RegisterResponse>(this.url + "/logout");
   }
 }
 export class RegisterResponse {

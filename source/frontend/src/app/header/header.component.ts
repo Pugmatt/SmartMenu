@@ -4,6 +4,8 @@ import {NavigationService} from '../navigation.service';
 
 import { LoginComponent } from '../login/login.component';
 
+import {UserService} from "../user.service";
+
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
@@ -13,12 +15,35 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    private userService: UserService) { 
+      this.getUser();
+    }
 
   login(): void {
     let dialogRef = this.dialog.open(LoginComponent, {
 
     });
+  }
+
+  logout(): void {
+    this.userService.logout().subscribe(msg => {
+      if(msg.user) {
+        this.userService.user = null;
+      }
+    });
+  }
+
+  getUser() {
+    this.userService.get().subscribe(msg => {
+      if(msg.user) {
+        this.userService.user = msg.user;
+      }
+    });
+  }
+
+  user() {
+    return this.userService.user;
   }
 
   ngOnInit() {

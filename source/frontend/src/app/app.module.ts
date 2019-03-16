@@ -23,6 +23,8 @@ import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
 
+import {UserService} from "./user.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,7 @@ import { RestaurantPageComponent } from './restaurant-page/restaurant-page.compo
     MatDialogModule,
     FormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

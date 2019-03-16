@@ -31,34 +31,11 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-app.use(passport.initialize());
-app.use(passport.session());
 // Setup database
 const db = async function() {
     await database.load();
     await database.connect();
     console.log("Loaded models");
-
-    // Setup passport strategy
-    passport.use(new LocalStrategy({usernameField: "email"},
-        function(username, password, done) {
-          database.User.authenticate(username, password, function(err, user) {
-            if (err) { return done(err); }
-            if (!user) { return done(null, false); }
-            return done(null, user);
-          });
-        }
-    ));
-
-    passport.serializeUser(function(user, done) {
-        done(null, user.index);
-    });
-      
-    passport.deserializeUser(function(id, done) {
-        database.User.findById(id, function (err, user) {
-          done(err, user);
-        });
-    });
 
     var seqSessions = new SequelizeStore({
         db: database.db
@@ -70,6 +47,36 @@ const db = async function() {
         proxy: true // if you do SSL outside of node.
     }));
     seqSessions.sync();
+
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    // Setup passport strategy
+    passport.use(new LocalStrategy({usernameField: "email"},
+        function(username, password, done) {
+            database.User.authenticate(username, password, function(err, user) {
+                if (err) { return done(err); }
+                if (!user) { return done(null, false); }
+                return done(null, user);
+            });
+        }
+    ));
+
+    passport.serializeUser(function(user, done) {
+        done(null, user.index);
+    });
+    
+    passport.deserializeUser(function(id, done) {
+        database.User.findById(id, function (err, user) {
+        done(err, user);
+        });
+    });
+
+    // Setup api routes
+    app.use('/api/products', products);
+    app.use('/api/restaurants', restaurants);
+    app.use('/api/images/restaurant/', restaurantPicture);
+    app.use('/api/user/', user);
 
     // Create development example database items
     if(!config.inprod) {
@@ -99,10 +106,5 @@ if(!config.inprod) {
 else
     db();
 
-// Setup api routes
-app.use('/api/products', products);
-app.use('/api/restaurants', restaurants);
-app.use('/api/images/restaurant/', restaurantPicture);
-app.use('/api/user/', user);
 
 module.exports = app;
