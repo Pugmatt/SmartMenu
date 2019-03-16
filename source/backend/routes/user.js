@@ -97,7 +97,7 @@ router.post('/create', function(req, res, next) {
           firstname: req.body.firstname,
           lastname: req.body.lastname,
           restaurant: restaurant.index,
-        }).save().then(function() { authenticate(user, res, req); });
+        }).save().then(function(user) { authenticate(user, res, req); });
       });
     }
   }
