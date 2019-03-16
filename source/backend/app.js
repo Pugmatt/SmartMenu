@@ -13,7 +13,7 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 var products = require('./routes/products');
 var restaurants = require('./routes/restaurants');
 var user = require('./routes/user');
-var restaurantPicture = require('./routes/restaurant-picture');
+var pictures = require('./routes/images');
 
 var config = require('./config');
 
@@ -75,7 +75,7 @@ const db = async function() {
     // Setup api routes
     app.use('/api/products', products);
     app.use('/api/restaurants', restaurants);
-    app.use('/api/images/restaurant/', restaurantPicture);
+    app.use('/api/images/', pictures);
     app.use('/api/user/', user);
 
     // Create development example database items
@@ -87,9 +87,9 @@ const db = async function() {
         }).then(function (obj) {
             if (!obj) {
                 console.log("Creating example database items");
-                database.Restaurant.build({name: "McDonalds", id: "adaj327", location: ""}).save();
-                database.Restaurant.build({name: "Taco Bell", id: "adae32d"}).save();
-                database.Restaurant.build({name: "Five Guys", id: "ej73fe"}).save();
+                database.Restaurant.build({name: "McDonalds", location: ""}).save();
+                database.Restaurant.build({name: "Taco Bell"}).save();
+                database.Restaurant.build({name: "Five Guys"}).save();
             }
         });
     }
