@@ -1,11 +1,46 @@
 var express = require('express');
+var passport = require('passport');
 var router = express.Router();
 
+const func = require('../functions.js');
+
+/* */
 const database = require("../database.js");
 
-/* GET restaurant listing. */
+
+/* GET user information if logged in. */
+router.get('/get', func.isLoggedIn, function(req, res, next) {
+  res.json({ user: {
+    username: req.user.username,
+    firstname: req.user.firstname,
+    lastname: req.user.lastname,
+    email: req.user.email,
+  }});
+});
+
+router.get('/logout', func.isLoggedIn, function(req, res, next) {
+  req.logout();
+  res.json({ user: "done" });
+});
+
+
+/* Authenticate user */
+router.post('/login', passport.authenticate('local'), function(req, res, next) {
+  if(typeof req.user == 'string') {
+    res.json({err: req.user});
+  }
+  else {
+    res.json({ user: {
+      username: req.user.username,
+      firstname: req.user.firstname,
+      lastname: req.user.lastname,
+      email: req.user.email,
+    }});
+  }
+});
+
+/* POST register new user */
 router.post('/create', function(req, res, next) {
-  console.log(req.body);
   if(req.body && req.body.consumer && req.body.username && req.body.password && req.body.email && req.body.firstname && req.body.lastname) {
     
     var valid = infoValid(req.body);
@@ -13,7 +48,7 @@ router.post('/create', function(req, res, next) {
     if(valid != "y")
       res.json({error: valid});
     else {
-      database.User.find({
+      database.User.findOne({
         where: {
           username: req.body.username
         }
@@ -36,7 +71,7 @@ router.post('/create', function(req, res, next) {
                 email: req.body.email,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname
-              }).save().then(function() { res.json({user: "success"}); });
+              }).save().then(function(user) { authenticate(user, res, req); });
             }
           });
         }
@@ -62,7 +97,7 @@ router.post('/create', function(req, res, next) {
           firstname: req.body.firstname,
           lastname: req.body.lastname,
           restaurant: restaurant.index,
-        }).save().then(function() { res.json({user: "success"}); });
+        }).save().then(function(user) { authenticate(user, res, req); });
       });
     }
   }
@@ -113,6 +148,24 @@ function infoValid(body) {
 
   return "y";
 } 
+
+// Authenticate user
+function authenticate(user, res, req) {
+  // Login with passed in user object
+  req.login(user, function(err) {
+    if(typeof user == 'string') {
+      return res.json({err: user});
+    }
+    else {
+      res.json({ user: {
+        username: user.username,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+      }});
+    }
+  });
+}
 
 function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

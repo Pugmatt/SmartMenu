@@ -3,7 +3,7 @@ var Hashids = require('hashids');
 var hashids = new Hashids("Dv06lngB", 8, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
 
 module.exports = function(sequelize, DataTypes) {
-    const Restaurant = sequelize.define("Restaurant", {
+    const Dish = sequelize.define("Dish", {
         index: {
             type: DataTypes.INTEGER,
             unique: true,
@@ -14,23 +14,22 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW
         },
+        restaurant: DataTypes.INTEGER,
         name: DataTypes.TEXT,
         description: DataTypes.TEXT,
-        address: DataTypes.TEXT,
-        city: DataTypes.TEXT,
-        state: DataTypes.TEXT
+        rating: DataTypes.INTEGER
     }, {
-        tableName: 'restaurants',
+        tableName: 'dishes',
         timestamps: false,
     });
 
-    Restaurant.encodeID = function(index) {
+    Dish.encodeID = function(index) {
         return hashids.encode(index);
     };
 
-    Restaurant.decodeID = function(hash) {
+    Dish.decodeID = function(hash) {
         return hashids.decode(hash);
     };
 
-    return Restaurant;
+    return Dish;
 };

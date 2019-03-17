@@ -29,5 +29,42 @@ module.exports = function(sequelize, DataTypes) {
         timestamps: false,
     });
 
+    User.findById = function (id, callback) {
+        User.findOne({ where: { index: id } })
+        .then(function (user) {
+          if (!user) {
+            var err = "User does not exist";
+            return callback(err);
+          }
+          else {
+            return callback(null, user);
+          }
+        }).catch(function (err) {
+          if (err) {
+              return callback(err)
+          }
+        });
+    };
+
+    User.authenticate = function (email, password, callback) {
+        User.findOne({ where: { email: email } })
+          .then(function (user) {
+            if (!user) {
+              return callback("User not found.");
+            }
+            bcrypt.compare(password, user.password, function (err, result) {
+              if (result === true) {
+                return callback(null, user);
+              } else {
+                return callback("Incorrect password.");
+              }
+            })
+          }).catch(function (err) {
+            if (err) {
+                return callback(err)
+            }
+          });
+      };
+
     return User;
 };

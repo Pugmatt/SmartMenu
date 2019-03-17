@@ -1,5 +1,9 @@
 <mat-progress-spinner *ngIf="!restaurants"></mat-progress-spinner>
-<div id="result-count">{{(restaurants ? restaurants.length : 0)}} {{resultsString}}</div>
+<div id="result-count">{{(restaurants ? total : 0)}} {{resultsString}}</div>
+<div id="page-nav">
+        <button mat-stroked-button (click)="back()" *ngIf="page != 1">Back</button>
+        <button mat-stroked-button (click)="next()" *ngIf="page < pages">Next</button>
+</div>
 <div *ngIf="restaurants">
     <p *ngFor="let restaurant of restaurants">
         <app-restaurant-element [restaurant]="restaurant"></app-restaurant-element>

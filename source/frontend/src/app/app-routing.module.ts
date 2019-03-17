@@ -14,11 +14,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'restaurant-element', component: RestaurantElementComponent },
-  { path: 'restaurant-page', component: RestaurantPageComponent },
-  { path: 'search/:restaurant/:location', component: SearchComponent, pathMatch: 'full'},
-  { path: 'bar-louie-page', component: BarLouiePageComponent},
-  {path: 'review', component:ReviewComponent},
+  { path: 'search/:restaurant/:location/:page', component: SearchComponent, pathMatch: 'full'},
 ];
 
 @NgModule({

@@ -12,8 +12,6 @@ import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { RestaurantElementComponent } from './restaurant-element/restaurant-element.component';
 import { RegisterComponent } from './register/register.component';
-
-import { SearchComponent } from './search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
@@ -21,10 +19,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SearchBoxComponent } from './home/search-box/search-box.component';
+import { SearchComponent } from './search/search.component';
+import { LoginComponent } from './login/login.component';
 import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
-import { BarLouiePageComponent } from './bar-louie-page/bar-louie-page.component';
-import { FileUploadModule } from 'ng2-file-upload';
-import { ReviewComponent } from './review/review.component';
+
+import {UserService} from "./user.service";
 
 @NgModule({
   declarations: [
@@ -38,10 +37,10 @@ import { ReviewComponent } from './review/review.component';
     RegisterComponent,
     SearchComponent,
     SearchBoxComponent,
-    RestaurantPageComponent,
-    BarLouiePageComponent,
-    ReviewComponent,
+    LoginComponent,
+    SearchComponent,
   ],
+  entryComponents: [LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -52,10 +51,9 @@ import { ReviewComponent } from './review/review.component';
     MatProgressSpinnerModule,
     MatButtonToggleModule,
     MatDialogModule,
-    FormsModule,
-    FileUploadModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

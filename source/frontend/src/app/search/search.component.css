@@ -2,3 +2,7 @@
     color: rgb(156, 143, 143);
     text-align: left;
 }
+
+#page-nav {
+    text-align: right;
+}

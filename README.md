@@ -42,5 +42,5 @@ This project would be created for restaurant consumers and restaurant owners, th
 
   Automatic: Testing can ran through the frontend by running the command "ng test"
 
-  [Manual](https://docs.google.com/document/d/11ZFe2Jn7rRdRMsQM2DGRxcNDCx3y0cIJSh3rldsyrtc/edit?usp=sharing)
+  [Manual](https://github.com/smart-menu/SmartMenu/tree/master/sprint2/manual-tests)
 - Product Demonstration

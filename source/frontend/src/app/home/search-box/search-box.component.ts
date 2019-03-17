@@ -11,7 +11,7 @@ export class SearchBoxComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if(form.value.restaurant || form.value.location)
-      this.router.navigate(['/search', !form.value.restaurant ? "all" : form.value.restaurant, form.value.location]);
+      this.router.navigate(['/search', !form.value.restaurant ? "all" : form.value.restaurant, !form.value.location ? "all" : form.value.location, "1"]);
   }
   
   constructor(

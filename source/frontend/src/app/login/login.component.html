@@ -1,0 +1,16 @@
+<form (ngSubmit)="onSubmit(login)" #login="ngForm">
+  <div class="form-group">
+     <label for="email">Email </label>
+     <input id="email" type="text" class="form-control"
+     name="email" ngModel required>
+  </div>
+   <div class="form-group">
+      <label for="pass">Password </label>
+      <input id="pass" type="password" class="form-control"
+      name="pass" ngModel required>
+   </div>
+  <div class="panel-footer">
+     <button class="btn btn-primary" type="submit" mat-raised-button>Login</button>
+  </div>
+</form>
+<p id="error" *ngIf="error">{{error}}</p>

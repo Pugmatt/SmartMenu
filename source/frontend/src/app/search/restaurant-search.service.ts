@@ -14,8 +14,13 @@ export class RestaurantSearchService {
   constructor(private http: HttpClient) { }
   
   // Retrieve list of restaurants from API
-  public getRestaurants (query: String): Observable<Restaurant[]> {
-    const url = this.fullUrl + '/' + query;
-    return this.http.get<Restaurant[]>(url);
+  public getRestaurants (query: String, page: number): Observable<SearchResponse> {
+    const url = this.fullUrl + '/' + query + '/' + page;
+    return this.http.get<SearchResponse>(url);
   }
+}
+export class SearchResponse {
+  pageCount: number;
+  total: number;
+  restaurants: Restaurant[];
 }
