@@ -18,12 +18,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 import { SearchBoxComponent } from './home/search-box/search-box.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
 
 import {UserService} from "./user.service";
+import { DishComponent } from './dish/dish.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +38,12 @@ import {UserService} from "./user.service";
     ProductListComponent,
     RestaurantElementComponent,
     RegisterComponent,
+    RestaurantPageComponent,
     SearchComponent,
     SearchBoxComponent,
     LoginComponent,
     SearchComponent,
+    DishComponent,
   ],
   entryComponents: [LoginComponent],
   imports: [
@@ -51,7 +56,9 @@ import {UserService} from "./user.service";
     MatProgressSpinnerModule,
     MatButtonToggleModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatGridListModule,
+    MatIconModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

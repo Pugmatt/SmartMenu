@@ -4,6 +4,8 @@ import {MenuComponent} from './menu/menu.component';
 import {HomeComponent} from './home/home.component';
 import {RegisterComponent} from './register/register.component';
 import {SearchComponent} from './search/search.component';
+import {RestaurantPageComponent} from './restaurant-page/restaurant-page.component';
+import {DishComponent} from './dish/dish.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -11,6 +13,8 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'search/:restaurant/:location/:page', component: SearchComponent, pathMatch: 'full'},
+  { path: 'restaurant/:id', component: RestaurantPageComponent },
+  { path: 'dish/:id', component: DishComponent },
 ];
 
 @NgModule({

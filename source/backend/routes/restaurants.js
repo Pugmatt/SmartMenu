@@ -7,7 +7,6 @@ const MAX_LISTING = 5;
 
 /* GET restaurant listing. */
 router.get('/', function(req, res, next) {
-  console.log(req.params);
   database.Restaurant.findAll({limit: MAX_LISTING, raw: true}).then(function(restaurants) {
       // Remove index from info
       for(var i=0;i<restaurants.length;i++) {
