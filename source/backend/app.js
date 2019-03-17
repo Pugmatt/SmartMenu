@@ -19,6 +19,8 @@ var config = require('./config');
 
 var database = require('./database');
 
+var fileRoutes = require('./routes/file'); //<--- this was added
+
 // Setup web server
 
 var app = express();

@@ -4,8 +4,11 @@ import {MenuComponent} from './menu/menu.component';
 import {HomeComponent} from './home/home.component';
 import {RegisterComponent} from './register/register.component';
 import {SearchComponent} from './search/search.component';
-import {RestaurantPageComponent} from './restaurant-page/restaurant-page.component';
 import {DishComponent} from './dish/dish.component';
+import { RestaurantElementComponent } from './restaurant-element/restaurant-element.component';
+import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
+import { BarLouiePageComponent } from './bar-louie-page/bar-louie-page.component';
+import { ReviewComponent } from './review/review.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +18,7 @@ const routes: Routes = [
   { path: 'search/:restaurant/:location/:page', component: SearchComponent, pathMatch: 'full'},
   { path: 'restaurant/:id', component: RestaurantPageComponent },
   { path: 'dish/:id', component: DishComponent },
+  { path: 'bar-louie-page', component: BarLouiePageComponent}
 ];
 
 @NgModule({
@@ -22,3 +26,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+ 
