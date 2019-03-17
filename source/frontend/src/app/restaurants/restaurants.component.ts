@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-restaurant-page',
-  templateUrl: './restaurant-page.component.html',
-  styleUrls: ['./restaurant-page.component.css']
+  selector: 'app-restaurants',
+  templateUrl: './restaurants.component.html',
+  styleUrls: ['./restaurants.component.css']
 })
-export class RestaurantPageComponent  {
+export class RestaurantsComponent  {
 
   comment1:string;  
   example1: string;

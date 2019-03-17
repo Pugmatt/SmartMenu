@@ -79,6 +79,7 @@ const db = async function() {
     app.use('/api/restaurants', restaurants);
     app.use('/api/images/', pictures);
     app.use('/api/user/', user);
+    app.use('/api/file/', fileRoutes);
 
     // Create development example database items
     if(!config.inprod) {

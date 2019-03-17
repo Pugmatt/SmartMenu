@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FileSelectDirective, FileUploader} from 'ng2-file-upload';
 
-const uri = 'http://localhost:3000/file/upload';
+const uri = 'api/file/upload';
 @Component({
   selector: 'app-bar-louie-page',
   templateUrl: './bar-louie-page.component.html',

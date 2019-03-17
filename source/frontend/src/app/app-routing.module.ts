@@ -6,7 +6,7 @@ import {RegisterComponent} from './register/register.component';
 import {SearchComponent} from './search/search.component';
 import {DishComponent} from './dish/dish.component';
 import { RestaurantElementComponent } from './restaurant-element/restaurant-element.component';
-import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { BarLouiePageComponent } from './bar-louie-page/bar-louie-page.component';
 import { ReviewComponent } from './review/review.component';
 
@@ -16,8 +16,8 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'search/:restaurant/:location/:page', component: SearchComponent, pathMatch: 'full'},
-  { path: 'restaurant/:id', component: RestaurantPageComponent },
   { path: 'dish/:id', component: DishComponent },
+  { path: 'restaurants', component: RestaurantsComponent },
   { path: 'bar-louie-page', component: BarLouiePageComponent}
 ];
 

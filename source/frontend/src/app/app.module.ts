@@ -23,7 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SearchBoxComponent } from './home/search-box/search-box.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
-import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { BarLouiePageComponent } from './bar-louie-page/bar-louie-page.component';
 
 import { UserService } from "./user.service";
@@ -41,7 +41,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
     ProductListComponent,
     RestaurantElementComponent,
     RegisterComponent,
-    RestaurantPageComponent,
+    RestaurantsComponent,
     SearchComponent,
     SearchBoxComponent,
     LoginComponent,
