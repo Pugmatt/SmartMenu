@@ -1,0 +1,42 @@
+.Price{
+    width: 25%;
+    padding: auto;
+    text-align:left;
+    margin-left:10px;
+}
+.Distance{
+    width: 25%;
+  padding: auto;
+  text-align:left;
+  margin-left:10px;
+}
+input[type='submit']{
+    cursor: pointer;
+   
+}
+#Submit{
+    text-align:left;
+}
+
+#Image_1{
+
+    width: 25%;
+    height: 25%;
+    left:16px;
+    
+   
+}
+
+.BarLouie{
+    position: relative;
+    bottom: 160px;
+    left: 150px;
+}
+
+.comment{
+    position: relative;
+    bottom:150px;
+    left:208px;
+}
+
+

@@ -12,10 +12,19 @@ import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { RestaurantElementComponent } from './restaurant-element/restaurant-element.component';
 import { RegisterComponent } from './register/register.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SearchComponent } from './search/search.component';
-import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
 
+import { SearchComponent } from './search/search.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SearchBoxComponent } from './home/search-box/search-box.component';
+import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
+import { BarLouiePageComponent } from './bar-louie-page/bar-louie-page.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -28,14 +37,23 @@ import { RestaurantPageComponent } from './restaurant-page/restaurant-page.compo
     RestaurantElementComponent,
     RegisterComponent,
     SearchComponent,
-    SearchComponent,
+    SearchBoxComponent,
+    RestaurantPageComponent,
+    BarLouiePageComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule
+    MatButtonModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatButtonToggleModule,
+    MatDialogModule,
+    FormsModule,
+    FileUploadModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

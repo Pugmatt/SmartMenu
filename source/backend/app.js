@@ -14,6 +14,8 @@ var config = require('./config');
 
 var database = require('./database');
 
+var fileRoutes = require('./routes/file'); //<--- this was added
+
 // Setup web server
 
 var app = express();
@@ -66,5 +68,6 @@ app.use('/api/products', products);
 app.use('/api/restaurants', restaurants);
 app.use('/api/images/restaurant/', restaurantPicture);
 app.use('/api/user/', user);
+app.use('/file', fileRoutes); // <--- this was added 2
 
 module.exports = app;
