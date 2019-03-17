@@ -24,9 +24,12 @@ import { SearchBoxComponent } from './home/search-box/search-box.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
+import { BarLouiePageComponent } from './bar-louie-page/bar-louie-page.component';
 
-import {UserService} from "./user.service";
+import { UserService } from "./user.service";
 import { DishComponent } from './dish/dish.component';
+
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { DishComponent } from './dish/dish.component';
     LoginComponent,
     SearchComponent,
     DishComponent,
+    BarLouiePageComponent,
+    FileSelectDirective
   ],
   entryComponents: [LoginComponent],
   imports: [
