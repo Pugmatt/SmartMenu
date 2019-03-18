@@ -18,11 +18,12 @@ module.exports = function(sequelize, DataTypes) {
         category: DataTypes.TEXT,
         name: DataTypes.TEXT,
         description: DataTypes.TEXT,
-        rating: DataTypes.INTEGER
+        rating: DataTypes.INTEGER,
+        images: DataTypes.INTEGER,
     }, {
         tableName: 'dishes',
         timestamps: false,
-    });
+    } );
 
     Dish.encodeID = function(index) {
         return hashids.encode(index);

@@ -37,6 +37,8 @@ export class CreateDishComponent implements OnInit {
         if(msg.error)
           this.error = msg.error;
         else {
+          console.log(msg.dish);
+          this.router.navigate(['/dish', msg.dish.id]);
           this.dialogRef.close();
         }
       }, error => {

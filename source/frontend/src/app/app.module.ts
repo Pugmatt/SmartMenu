@@ -20,6 +20,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRippleModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
 import { SearchBoxComponent } from './home/search-box/search-box.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
@@ -67,7 +69,9 @@ import { CreateDishComponent } from './dish/create-dish/create-dish.component';
     MatDialogModule,
     FormsModule,
     MatGridListModule,
-    MatIconModule
+    MatIconModule,
+    MatRippleModule,
+    MatCardModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

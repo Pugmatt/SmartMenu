@@ -23,6 +23,7 @@ router.get('/get/:id', function(req, res, next) {
     if(!req.params.id)
        res.json({error: "Invalid data"});
 
+    console.log(database.Dish.decodeID(req.params.id))
     database.Dish.find({where: {
       index: database.Dish.decodeID(req.params.id)
     },
@@ -48,8 +49,16 @@ router.post('/add', func.isLoggedIn, function(req, res, next) {
                     description: req.body.description,
                     restaurant: req.user.restaurant,
                     category: req.body.category,
+                    images: 1
                 }).save().then(function(dish) {
-                    res.json({dish: dish});
+                    res.json({dish: {
+                        id: database.Dish.encodeID(dish.index),
+                        name: dish.name,
+                        description: dish.name,
+                        restaurant: database.Restaurant.encodeID(dish.restaurant),
+                        category: dish.category,
+                        images: 1
+                    }});
                 }).catch(function(err) { res.json({error: "Database error: " + err}); });
             }
             else

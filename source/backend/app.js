@@ -108,8 +108,10 @@ if(!config.inprod) {
         var sm_client = new pg.Client('postgres://' + config.database.user + ':' + config.database.password + '@' + config.database.host + '/smartmenu');
         sm_client.connect();
         sm_client.query('ALTER TABLE smartmenu.public.dishes ADD COLUMN category text', function (err, res) {
-            db();
-            sm_client.end(); 
+            sm_client.query('ALTER TABLE smartmenu.public.dishes ADD COLUMN images text', function (err, res) {
+                db();
+                sm_client.end();
+            });
         });
     });
 } 

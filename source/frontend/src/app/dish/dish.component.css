@@ -1,0 +1,23 @@
+img#display {
+    border-radius: 50px;
+}
+
+.image {
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px; 
+    width: 100px;
+}
+
+#gallery {
+    overflow: auto;
+    height: 200px;
+}
+
+#description {
+    padding: 30px;
+    padding-right: 30%;
+    padding-left: 30%;
+}
