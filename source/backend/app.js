@@ -14,6 +14,7 @@ var products = require('./routes/products');
 var restaurants = require('./routes/restaurants');
 var user = require('./routes/user');
 var pictures = require('./routes/images');
+var dishes = require('./routes/dishes');
 
 var config = require('./config');
 
@@ -79,6 +80,7 @@ const db = async function() {
     app.use('/api/restaurants', restaurants);
     app.use('/api/images/', pictures);
     app.use('/api/user/', user);
+    app.use('/api/dish/', dishes);
     app.use('/api/file/', fileRoutes);
 
     // Create development example database items
@@ -99,15 +101,21 @@ const db = async function() {
 };
 // If in dev mode, create a database if needed. If in production, expect one to already be made
 if(!config.inprod) {
-    const client = new pg.Client('postgres://' + config.database.user + ':' + config.database.password + '@' + config.database.host + '/postgres');
+    var client = new pg.Client('postgres://' + config.database.user + ':' + config.database.password + '@' + config.database.host + '/postgres');
     client.connect();
     client.query('CREATE DATABASE smartmenu', function () {
-        db();
-        client.end(); 
+        client.end();
+        var sm_client = new pg.Client('postgres://' + config.database.user + ':' + config.database.password + '@' + config.database.host + '/smartmenu');
+        sm_client.connect();
+        sm_client.query('ALTER TABLE smartmenu.public.dishes ADD COLUMN category text', function (err, res) {
+            db();
+            sm_client.end(); 
+        });
     });
-}
+} 
 else
     db();
 
 
 module.exports = app;
+  

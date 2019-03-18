@@ -15,6 +15,7 @@ router.get('/get', func.isLoggedIn, function(req, res, next) {
     firstname: req.user.firstname,
     lastname: req.user.lastname,
     email: req.user.email,
+    restaurant: database.Restaurant.encodeID(req.user.restaurant)
   }});
 });
 
@@ -35,6 +36,7 @@ router.post('/login', passport.authenticate('local'), function(req, res, next) {
       firstname: req.user.firstname,
       lastname: req.user.lastname,
       email: req.user.email,
+      restaurant: database.Restaurant.encodeID(req.user.restaurant)
     }});
   }
 });
@@ -162,6 +164,7 @@ function authenticate(user, res, req) {
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
+        restaurant: database.Restaurant.encodeID(user.restaurant)
       }});
     }
   });

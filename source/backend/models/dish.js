@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: DataTypes.NOW
         },
         restaurant: DataTypes.INTEGER,
+        category: DataTypes.TEXT,
         name: DataTypes.TEXT,
         description: DataTypes.TEXT,
         rating: DataTypes.INTEGER

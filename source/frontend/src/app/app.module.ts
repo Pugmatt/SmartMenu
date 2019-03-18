@@ -31,6 +31,7 @@ import { DishComponent } from './dish/dish.component';
 
 import { FileSelectDirective } from 'ng2-file-upload';
 import { RestaurantComponent } from './restaurant/restaurant.component';
+import { CreateDishComponent } from './dish/create-dish/create-dish.component';
 
 @NgModule({
   declarations: [
@@ -50,9 +51,10 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
     DishComponent,
     BarLouiePageComponent,
     FileSelectDirective,
-    RestaurantComponent
+    RestaurantComponent,
+    CreateDishComponent
   ],
-  entryComponents: [LoginComponent],
+  entryComponents: [LoginComponent, CreateDishComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
