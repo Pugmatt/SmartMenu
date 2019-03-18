@@ -1,5 +1,10 @@
-img#display {
+#display {
     border-radius: 50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 300px;
+    width: 300px;
 }
 
 .image {
@@ -18,6 +23,7 @@ img#display {
 
 #description {
     padding: 30px;
-    padding-right: 30%;
-    padding-left: 30%;
+    padding-right: 10%;
+    padding-left: 10%;
+    background-color: #F7F7F7;
 }
