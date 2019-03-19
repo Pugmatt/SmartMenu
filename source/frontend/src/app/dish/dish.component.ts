@@ -9,7 +9,9 @@ import { UserService } from "../user.service";
 
 import { CreateDishComponent } from './create-dish/create-dish.component';
 
-import { Dish } from "./dish"
+import { UploaderComponent } from '../uploader/uploader.component';
+
+import { Dish } from "./dish";
 
 @Component({
   selector: 'app-dish',
@@ -49,7 +51,20 @@ export class DishComponent implements OnInit {
   }
 
   add() {
-    let dialogRef = this.dialog.open(CreateDishComponent, {
+    let dialogRef = this.dialog.open(CreateDishComponent, {});
+  }
+
+  uploader() {
+    const root = this;
+    let dialogRef = this.dialog.open(UploaderComponent, {
+      data: { directory: 'dish', id: this.route.snapshot.params.id, cb: function(status) {
+        if (status.status === 200) {
+          root.currentImage = 2;
+          root.currentImage = 1;
+            root.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+              root.router.navigate(['/dish', root.route.snapshot.params.id]));
+        }
+      }}
     });
   }
 
