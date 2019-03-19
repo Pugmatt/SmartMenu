@@ -38,6 +38,7 @@ This project would be created for restaurant consumers and restaurant owners, th
   - [System Architecture](https://docs.google.com/document/d/1am3hKZklIUwVaivHIaXepfbZmhsTSvsYJtw2n1GcIj8/edit?usp=sharing)
   - [Class Diagrams](https://github.com/smart-menu/SmartMenu/blob/master/sprint2/SmartMenuClassDiagram.jpg)
 - [Source Code](https://github.com/smart-menu/SmartMenu/tree/master/source)
+  - Frontend: Main Website Code can be found in frontend/src/app
 - Test Cases
 
   Automatic: Testing can ran through the frontend by running the command "ng test"
