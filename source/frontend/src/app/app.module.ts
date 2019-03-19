@@ -22,6 +22,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { SearchBoxComponent } from './home/search-box/search-box.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
@@ -73,7 +74,8 @@ import { UploaderComponent } from './uploader/uploader.component';
     MatGridListModule,
     MatIconModule,
     MatRippleModule,
-    MatCardModule
+    MatCardModule,
+    MatTooltipModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

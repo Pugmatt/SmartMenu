@@ -19,6 +19,41 @@ var store = multer.diskStorage({
 
 var upload = multer({storage:store}).single('file');
 
+router.post('/restaurant', func.isLoggedIn, function(req,res,next){
+
+    upload(req,res,function(err){
+        if(err){
+            return res.status(501).json({error:err});
+        }
+
+        database.Restaurant.findOne({
+            where: {
+                index: database.Restaurant.decodeID(req.body.id)
+            }
+        }).then(function(restaurant) {
+            if(restaurant) {
+                if(req.body.id == database.Restaurant.encodeID(req.user.restaurant)) {
+                    fs.rename('./images/' + req.file.filename, './images/restaurants/' + req.body.id + ".png", function (err) {
+                        if (err) {
+                            return console.error(err);
+                        }
+
+                        res.json({});
+                    });
+                }
+                else
+                    res.json({error: "You don't have permission for this restaurant"});
+            }
+            else {
+                res.json({error: "Restaurant does not exist."});
+            }
+        });
+
+        //do all database record saving activity
+        //return res.json({originalname: req.file.originalname, uploadname: req.file.filename});
+    });
+});
+
 router.post('/dish', func.isLoggedIn, function(req,res,next){
 
     upload(req,res,function(err){
@@ -32,7 +67,6 @@ router.post('/dish', func.isLoggedIn, function(req,res,next){
             }
         }).then(function(dish) {
             if(dish) {
-                console.log('./images/dishes/' + req.body.id + "_" + (dish.images+1) + ".png")
                 fs.rename('./images/' + req.file.filename, './images/dishes/' + req.body.id + "_" + (dish.images+1) + ".png", function (err) {
                     if (err) {
                         return console.error(err);

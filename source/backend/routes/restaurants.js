@@ -34,6 +34,46 @@ router.get('/get/:id', function(req, res, next) {
     
 });
 
+// Get list of dishes owned by a restaurant
+router.get('/dishes/:id', function(req, res, next) {
+    if(!req.params.id)
+        res.json({error: "Invalid data"});
+
+    // Find all dishes under the requested restaurant
+    database.Dish.findAll({
+        where: {
+            restaurant: database.Restaurant.decodeID(req.params.id)
+        },
+        raw: true
+    }).then(function(dishes) {
+        // Split dishes into categories
+        var categories = [];
+
+        for(var i=0;i<dishes.length;i++) {
+            dishes[i].id = database.Dish.encodeID(dishes[i].index);
+            delete dishes[i].index;
+
+            var exists = false;
+            for(var c=0;c<categories.length;c++) {
+                if(categories[c] && dishes[i].category == categories[c].name) {
+                    categories[c].push(dishes[i]);
+                    exists = true;
+                }
+            }
+
+            if(!exists) {
+                let category = {
+                    name: dishes[i].category,
+                    dishes: [dishes[i]]
+                };
+                categories.push(category);
+            }
+        }
+        console.log(categories)
+        res.json(categories);
+    }).catch(function(err) { res.json({error: "Database error: " + err}); });
+});
+
 /* GET restaurant listing based on search query. */
 router.get('/:query/:page', function(req, res, next) {
 

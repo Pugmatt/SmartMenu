@@ -7,6 +7,7 @@ import {SearchComponent} from './search/search.component';
 import {DishComponent} from './dish/dish.component';
 import { RestaurantElementComponent } from './restaurant-element/restaurant-element.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
 import { BarLouiePageComponent } from './bar-louie-page/bar-louie-page.component';
 import { ReviewComponent } from './review/review.component';
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'search/:restaurant/:location/:page', component: SearchComponent, pathMatch: 'full'},
   { path: 'dish/:id', component: DishComponent },
   { path: 'restaurants', component: RestaurantsComponent },
+  { path: 'restaurant/:id', component: RestaurantComponent },
   { path: 'bar-louie-page', component: BarLouiePageComponent}
 ];
 
@@ -26,4 +28,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
- 

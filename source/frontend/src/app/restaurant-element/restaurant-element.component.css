@@ -1,4 +1,6 @@
-
+div {
+  cursor: pointer;
+}
 img {
   border-radius: 100px;
 }

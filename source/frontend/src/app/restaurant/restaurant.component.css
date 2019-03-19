@@ -1,0 +1,24 @@
+img {
+  border-radius: 20px;
+}
+
+.category {
+  margin: 10px;
+}
+
+.dish {
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100px;
+  width: 100px;
+}
+
+button {
+  margin: 5px;
+}
+
+#admin {
+  background-color: #F7F7F7;
+}
