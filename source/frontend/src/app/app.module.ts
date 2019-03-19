@@ -36,6 +36,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { CreateDishComponent } from './dish/create-dish/create-dish.component';
 import { UploaderComponent } from './uploader/uploader.component';
+import { ReviewComponent } from "./review/review.component";
 
 @NgModule({
   declarations: [
@@ -57,9 +58,10 @@ import { UploaderComponent } from './uploader/uploader.component';
     FileSelectDirective,
     RestaurantComponent,
     CreateDishComponent,
-    UploaderComponent
+    UploaderComponent,
+    ReviewComponent
   ],
-  entryComponents: [LoginComponent, CreateDishComponent, UploaderComponent],
+  entryComponents: [LoginComponent, CreateDishComponent, UploaderComponent, ReviewComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,6 +1,20 @@
-<div class = "comment" ><textarea rows = "30" cols = "80">{{comment1}}</textarea></div>
-<div id= "Submit">
-    <input type="submit" value="Submit">
-    </div>
-
-  
+<form (ngSubmit)="onSubmit(review)" #review="ngForm">
+  Rating:
+  <div class="form-group">
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="5">
+      <mat-button-toggle value="1" (click)="rating(1)">1</mat-button-toggle>
+      <mat-button-toggle value="2" (click)="rating(2)">2</mat-button-toggle>
+      <mat-button-toggle value="3" (click)="rating(3)">3</mat-button-toggle>
+      <mat-button-toggle value="4" (click)="rating(4)">4</mat-button-toggle>
+      <mat-button-toggle value="5" (click)="rating(5)">5</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="form-group">
+    <textarea id="comment" class="form-control"
+              name="comment" rows = "30" cols = "80" ngModel></textarea>
+  </div>
+  <div class="panel-footer">
+    <button class="btn btn-primary" type="submit" mat-raised-button>Submit Review</button>
+  </div>
+</form>
+<p id="error" *ngIf="error">{{error}}</p>

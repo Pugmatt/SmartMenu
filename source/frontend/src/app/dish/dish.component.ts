@@ -11,6 +11,8 @@ import { CreateDishComponent } from './create-dish/create-dish.component';
 
 import { UploaderComponent } from '../uploader/uploader.component';
 
+import { ReviewComponent } from '../review/review.component';
+
 import { Dish } from "./dish";
 
 @Component({
@@ -52,6 +54,12 @@ export class DishComponent implements OnInit {
 
   add() {
     let dialogRef = this.dialog.open(CreateDishComponent, {});
+  }
+
+  review() {
+    let dialogRef = this.dialog.open(ReviewComponent, {
+      data: { id: this.route.snapshot.params.id }
+    });
   }
 
   uploader() {

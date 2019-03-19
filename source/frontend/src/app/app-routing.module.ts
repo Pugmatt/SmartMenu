@@ -20,7 +20,6 @@ const routes: Routes = [
   { path: 'dish/:id', component: DishComponent },
   { path: 'restaurants', component: RestaurantsComponent },
   { path: 'restaurant/:id', component: RestaurantComponent },
-  { path: 'bar-louie-page', component: BarLouiePageComponent}
 ];
 
 @NgModule({

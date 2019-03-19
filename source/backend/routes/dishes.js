@@ -36,6 +36,70 @@ router.get('/get/:id', function(req, res, next) {
     
 });
 
+router.get('/reviews/get/:id', function(req, res, next) {
+    if(!req.params.id)
+        res.json({error: "Invalid data"});
+
+    database.Dish.find({where: {
+            index: database.Dish.decodeID(req.params.id)
+        },
+        raw: true}).then(function(dish) {
+        if(dish) {
+            database.Review.findAll({
+                where: {
+                    dish: database.Dish.decodeID(req.params.id)
+                },
+                raw: true
+            }).then(function(reviews) {
+               for(var i=0;i<reviews.length;i++) {
+                   delete reviews[i].index;
+               }
+               res.json(reviews);
+            });
+        }
+        else
+            res.json({error: "Dish does not exist."});
+
+
+        res.json(dish);
+    }).catch(function(err) { res.json({error: "Database error: " + err}); });
+
+});
+
+router.post('/reviews/add', func.isLoggedIn, function(req, res, next) {
+    if (req.body && req.body.comment && req.body.rating && req.body.dish) {
+        if (!(typeof req.body.comment == 'string' && typeof req.body.rating == 'number' && typeof req.body.dish == 'string' && req.body.comment.length > 0 && req.body.rating > 0 && req.body.rating <= 5 && [1,2,3,4,5].indexOf(req.body.rating) != -1)
+        && req.body.dish.length > 0)
+            res.json({error: "Invalid variable types"});
+        else {
+            database.Dish.findOne({
+                where: {
+                    index: database.Dish.decodeID(req.body.dish)
+                },
+                raw: true
+            }).then(function(dish) {
+                if(dish) {
+                    console.log(req.body.dish);
+                    console.log(dish);
+                    database.Review.build({
+                        owner: req.user.index,
+                        comment: req.body.comment,
+                        rating: req.body.rating,
+                        dish: database.Dish.decodeID(req.body.dish)
+                    }).save().then(function(review) {
+                        delete review.index;
+                        review.owner = req.user.username;
+                       res.json({review: review});
+                    });
+                }
+                else {
+                    res.json({error: "Dish does not exist."});
+                }
+            }).catch(function(err) { res.json({error: "Database error: " + err}); });
+        }
+    }
+});
+
 router.post('/add', func.isLoggedIn, function(req, res, next) {
     if(req.body && req.body.name && req.body.category && req.body.description && req.body.restaurant) {
         if(!(typeof req.body.name == 'string' && typeof req.body.category == 'string' && typeof req.body.description == 'string' &&
