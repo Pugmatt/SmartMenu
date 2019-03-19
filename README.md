@@ -25,7 +25,7 @@ This project would be created for restaurant consumers and restaurant owners, th
 
   Automatic: Testing can ran through the frontend by running the command "ng test"
   
-  [Manual](https://docs.google.com/document/d/11ZFe2Jn7rRdRMsQM2DGRxcNDCx3y0cIJSh3rldsyrtc/edit?usp=sharing)
+  [Manual](https://docs.google.com/document/d/10S3pCeSfHFQu3lPjv2u-bs-VZtnsvvT5Gpby8xrgX4s/edit)
 - [Product Demonstration](https://www.youtube.com/watch?v=zdfCHxp8Xn0)
 
 # Sprint 2
@@ -43,5 +43,5 @@ This project would be created for restaurant consumers and restaurant owners, th
 
   Automatic: Testing can ran through the frontend by running the command "ng test"
 
-  [Manual](https://github.com/smart-menu/SmartMenu/tree/master/sprint2/manual-tests)
+  [Manual](https://docs.google.com/document/d/10S3pCeSfHFQu3lPjv2u-bs-VZtnsvvT5Gpby8xrgX4s/edit)
 - Product Demonstration
