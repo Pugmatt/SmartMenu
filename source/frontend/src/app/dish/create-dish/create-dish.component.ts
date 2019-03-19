@@ -37,14 +37,16 @@ export class CreateDishComponent implements OnInit {
         if(msg.error)
           this.error = msg.error;
         else {
-          console.log(msg.dish);
-          this.router.navigate(['/dish', msg.dish.id]);
+          this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+            this.router.navigate(['/dish', msg.dish.id]));
           this.dialogRef.close();
         }
       }, error => {
         this.error = error.error;
       });
     }
+    else
+      this.error = "Name and category must be filled out.";
 
     console.log(dish); 
   }

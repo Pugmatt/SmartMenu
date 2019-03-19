@@ -23,7 +23,6 @@ router.get('/get/:id', function(req, res, next) {
     if(!req.params.id)
        res.json({error: "Invalid data"});
 
-    console.log(database.Dish.decodeID(req.params.id))
     database.Dish.find({where: {
       index: database.Dish.decodeID(req.params.id)
     },
@@ -40,7 +39,7 @@ router.get('/get/:id', function(req, res, next) {
 router.post('/add', func.isLoggedIn, function(req, res, next) {
     if(req.body && req.body.name && req.body.category && req.body.description && req.body.restaurant) {
         if(!(typeof req.body.name == 'string' && typeof req.body.category == 'string' && typeof req.body.description == 'string' &&
-        typeof req.body.restaurant  == 'string'))
+        typeof req.body.restaurant  == 'string' && req.body.name.length > 0 && req.body.category.length > 0 && req.body.restaurant.length > 0))
             res.json({error: "Invalid variable types"});
         else {
             if(database.Restaurant.decodeID(req.body.restaurant) == req.user.restaurant) {
@@ -49,7 +48,7 @@ router.post('/add', func.isLoggedIn, function(req, res, next) {
                     description: req.body.description,
                     restaurant: req.user.restaurant,
                     category: req.body.category,
-                    images: 1
+                    images: 0
                 }).save().then(function(dish) {
                     res.json({dish: {
                         id: database.Dish.encodeID(dish.index),
