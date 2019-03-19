@@ -68,7 +68,7 @@ router.get('/reviews/get/:id', function(req, res, next) {
 
 router.post('/reviews/add', func.isLoggedIn, function(req, res, next) {
     if (req.body && req.body.comment && req.body.rating && req.body.dish) {
-        if (!(typeof req.body.comment == 'string' && typeof req.body.rating == 'number' && typeof req.body.dish == 'string' && req.body.comment.length > 0 && req.body.rating > 0 && req.body.rating <= 5 && [1,2,3,4,5].indexOf(req.body.rating) != -1)
+        if (!(typeof req.body.comment == 'string' && typeof req.body.rating == 'number' && typeof req.body.dish == 'string' && req.body.comment.length < 1000 && req.body.comment.length > 0 && req.body.rating > 0 && req.body.rating <= 5 && [1,2,3,4,5].indexOf(req.body.rating) != -1)
         && req.body.dish.length > 0)
             res.json({error: "Invalid variable types"});
         else {
@@ -103,7 +103,7 @@ router.post('/reviews/add', func.isLoggedIn, function(req, res, next) {
 router.post('/add', func.isLoggedIn, function(req, res, next) {
     if(req.body && req.body.name && req.body.category && req.body.description && req.body.restaurant) {
         if(!(typeof req.body.name == 'string' && typeof req.body.category == 'string' && typeof req.body.description == 'string' &&
-        typeof req.body.restaurant  == 'string' && req.body.name.length > 0 && req.body.category.length > 0 && req.body.restaurant.length > 0))
+        typeof req.body.restaurant  == 'string' && req.body.description.length <= 2000 && req.body.name.length <= 50 && req.body.name.length > 0 && req.body.category.length > 0 && req.body.restaurant.length > 0))
             res.json({error: "Invalid variable types"});
         else {
             if(database.Restaurant.decodeID(req.body.restaurant) == req.user.restaurant) {

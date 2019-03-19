@@ -1,7 +1,7 @@
 <h1>{{restaurant.name}}</h1>
 <p>{{restaurant.description}}</p>
 <img src="/api/images/restaurant/{{restaurant.id}}">
-<div *ngIf="restaurant.id == userService.user.restaurant">
+<div *ngIf="userService.user && restaurant.id == userService.user.restaurant">
   <mat-card id="admin">
     <h3>Owner Tools</h3>
     <button type="submit" mat-raised-button (click)="uploader()">Change Image</button>
