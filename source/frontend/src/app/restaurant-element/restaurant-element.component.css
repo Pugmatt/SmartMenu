@@ -3,4 +3,6 @@ div {
 }
 img {
   border-radius: 100px;
+  width: 150px;
+  height: 150px;
 }

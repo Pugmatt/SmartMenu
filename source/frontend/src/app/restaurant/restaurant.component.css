@@ -1,5 +1,7 @@
 img {
   border-radius: 20px;
+  max-width: 550px;
+  max-height: 450px;
 }
 
 .category {
