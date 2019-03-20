@@ -6,7 +6,7 @@
   <h1>{{dish.name}}</h1>
   <mat-grid-list cols="2" rowHeight="100px">
       <mat-grid-tile [rowspan]="3">
-        <div id="display" [ngStyle]="{ 'background-image': getUrl(currentImage-1) }">
+        <div id="display" [ngStyle]="{ 'background-image': (dish.images == 0 ? getUrl(currentImage) : getUrl(currentImage-1)) }">
         </div>
       </mat-grid-tile>
       <mat-grid-tile [rowspan]="2" id="gallery" *ngIf="dish.images > 1">

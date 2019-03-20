@@ -49,4 +49,9 @@ export class UploaderComponent implements OnInit {
 
   }
 
+  // For the unit test
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+  }
+
 }

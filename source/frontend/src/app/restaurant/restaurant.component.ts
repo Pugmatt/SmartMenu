@@ -44,6 +44,7 @@ export class RestaurantComponent implements OnInit {
     let dialogRef = this.dialog.open(UploaderComponent, {
       data: { directory: 'restaurant', id: this.route.snapshot.params.id, cb: function(status) {
           if (status.status === 200) {
+            location.reload();
             root.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
               root.router.navigate(['/restaurant', root.route.snapshot.params.id]));
           }

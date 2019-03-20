@@ -9,4 +9,10 @@ describe('ReviewService', () => {
     const service: ReviewService = TestBed.get(ReviewService);
     expect(service).toBeTruthy();
   });
+
+  it('should get reviews', () => {
+    const service: ReviewService = TestBed.get(ReviewService);
+
+    expect(service).toBeTruthy();
+  });
 });

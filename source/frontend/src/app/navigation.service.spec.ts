@@ -9,4 +9,10 @@ describe('NavigationService', () => {
     const service: NavigationService = TestBed.get(NavigationService);
     expect(service).toBeTruthy();
   });
+
+  it('should return navigation list', () => {
+    const service: NavigationService = TestBed.get(NavigationService);
+    this.navigationService.get()
+      .subscribe(items => expect(items).not.toBe(null) );
+  });
 });

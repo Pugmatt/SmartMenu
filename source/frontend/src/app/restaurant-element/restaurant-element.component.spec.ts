@@ -22,4 +22,11 @@ describe('RestaurantElementComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display restaurant details', () => {
+    component.restaurant = {name: 'Test', id: 'ID'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('#restaurant_name').textContent).toEqual('Fast Food');
+  });
 });

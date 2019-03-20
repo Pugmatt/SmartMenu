@@ -61,7 +61,7 @@ export class RegisterComponent
         if(msg.error)
           this.error = msg.error;
         else {
-          this.userService.user = user;
+          this.userService.user = msg.user;
           this.router.navigate(['/home']);
         }
       });

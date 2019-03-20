@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +27,6 @@ import { SearchBoxComponent } from './home/search-box/search-box.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
-import { BarLouiePageComponent } from './bar-louie-page/bar-louie-page.component';
 
 import { UserService } from "./user.service";
 import { DishComponent } from './dish/dish.component';
@@ -54,7 +53,6 @@ import { ReviewComponent } from "./review/review.component";
     LoginComponent,
     SearchComponent,
     DishComponent,
-    BarLouiePageComponent,
     FileSelectDirective,
     RestaurantComponent,
     CreateDishComponent,
@@ -73,6 +71,7 @@ import { ReviewComponent } from "./review/review.component";
     MatButtonToggleModule,
     MatDialogModule,
     FormsModule,
+    ReactiveFormsModule,
     MatGridListModule,
     MatIconModule,
     MatRippleModule,

@@ -67,8 +67,7 @@ export class DishComponent implements OnInit {
     let dialogRef = this.dialog.open(UploaderComponent, {
       data: { directory: 'dish', id: this.route.snapshot.params.id, cb: function(status) {
         if (status.status === 200) {
-          root.currentImage = 2;
-          root.currentImage = 1;
+            location.reload();
             root.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
               root.router.navigate(['/dish', root.route.snapshot.params.id]));
         }

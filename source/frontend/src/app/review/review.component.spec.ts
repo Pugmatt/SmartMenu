@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReviewComponent } from './review.component';
+import {element} from "protractor";
 
 describe('ReviewComponent', () => {
   let component: ReviewComponent;
@@ -22,4 +23,5 @@ describe('ReviewComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
