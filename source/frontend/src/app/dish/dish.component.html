@@ -25,6 +25,9 @@
           <mat-icon *ngFor="let i of [1,2,3,4,5]">star</mat-icon>
         </mat-card>
       </mat-grid-tile>
+      <mat-grid-tile [rowspan]="4" [colspan]="1">
+        <app-nutritional-facts></app-nutritional-facts>
+      </mat-grid-tile>
       <mat-grid-tile [rowspan]="2" [colspan]="2">
           <mat-card id="description">
             {{dish.description}}

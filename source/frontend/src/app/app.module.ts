@@ -23,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTableModule } from '@angular/material/table';
 import { SearchBoxComponent } from './home/search-box/search-box.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
@@ -36,6 +37,7 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { CreateDishComponent } from './dish/create-dish/create-dish.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { ReviewComponent } from "./review/review.component";
+import { NutritionalFactsComponent } from './dish/nutritional-facts/nutritional-facts.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { ReviewComponent } from "./review/review.component";
     RestaurantComponent,
     CreateDishComponent,
     UploaderComponent,
-    ReviewComponent
+    ReviewComponent,
+    NutritionalFactsComponent
   ],
   entryComponents: [LoginComponent, CreateDishComponent, UploaderComponent, ReviewComponent],
   imports: [
@@ -76,7 +79,8 @@ import { ReviewComponent } from "./review/review.component";
     MatIconModule,
     MatRippleModule,
     MatCardModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTableModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
