@@ -31,7 +31,14 @@ router.get('/get/:id', function(req, res, next) {
       dish.id = req.params.id
       delete dish.index;
 
-      res.json(dish);
+      database.Nutritional.find({where: {
+        dish: database.Dish.decodeID(req.params.id)
+      },
+      raw: true}).then(function(nutritional) {
+        delete nutritional.index;
+        dish.nutritional = nutritional;
+        res.json(dish);
+      });
     }).catch(function(err) { res.json({error: "Database error: " + err}); });
     
 });
@@ -114,14 +121,35 @@ router.post('/add', func.isLoggedIn, function(req, res, next) {
                     category: req.body.category,
                     images: 0
                 }).save().then(function(dish) {
-                    res.json({dish: {
-                        id: database.Dish.encodeID(dish.index),
-                        name: dish.name,
-                        description: dish.name,
-                        restaurant: database.Restaurant.encodeID(dish.restaurant),
-                        category: dish.category,
-                        images: 1
-                    }});
+                    if(!req.body.calories) {
+                        req.body.calories = -1;
+                    }
+                    if(!req.body.total_fat) {
+                        req.body.total_fat = -1;
+                    }
+                    if(!req.body.cholesterol) {
+                        req.body.cholesterol = -1;
+                    }
+                    if(!req.body.sodium) {
+                        req.body.sodium = -1;
+                    }
+                    database.Nutritional.build({
+                        calories: req.body.calories,
+                        total_fat: req.body.total_fat,
+                        cholesterol: req.body.cholesterol,
+                        sodium: req.body.sodium,
+                        dish: dish.index
+                    }).save().then(function(nutritional){
+                        res.json({dish: {
+                            id: database.Dish.encodeID(dish.index),
+                            name: dish.name,
+                            description: dish.name,
+                            restaurant: database.Restaurant.encodeID(dish.restaurant),
+                            category: dish.category,
+                            images: 1,
+                            nutritional: nutritional
+                        }});
+                    }).catch(function(err) { res.json({error: "Database error: " + err}); });
                 }).catch(function(err) { res.json({error: "Database error: " + err}); });
             }
             else

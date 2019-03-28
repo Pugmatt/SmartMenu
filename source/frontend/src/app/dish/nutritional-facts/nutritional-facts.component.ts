@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Dish } from '../dish';
 
 export interface NutritionalFacts {
   type: string;
-  amount: number;
-  percent: number;
+  amount: string;
 }
 
 @Component({
@@ -12,23 +12,22 @@ export interface NutritionalFacts {
   styleUrls: ['./nutritional-facts.component.css']
 })
 export class NutritionalFactsComponent implements OnInit {
-
-  ELEMENT_DATA: NutritionalFacts[] = [
-    { type: 'Calories', amount: 1.0079, percent: 12},
-    { type: 'Total Fat', amount: 4.0026, percent: 45},
-    { type: 'Cholesterol', amount: 6.941, percent: 20},
-    { type: 'Sodium', amount: 9.0122, percent: 18},
-  ];
-  displayedColumns: string[] = ['type', 'amount', 'percent'];
-  dataSource = this.ELEMENT_DATA;
+  @Input() dish;
+  ELEMENT_DATA: NutritionalFacts[];
+  displayedColumns: string[] = ['type', 'amount'];
+  dataSource;
   
-  /**
-   * @title Basic use of `<table mat-table>`
-   */
-  
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
+    this.ELEMENT_DATA = [
+      { type: 'Calories', amount: (this.dish.nutritional.calories < 0 ? 'N/A' : this.dish.nutritional.calories)},
+      { type: 'Total Fat', amount: (this.dish.nutritional.total_fat < 0 ? 'N/A' : this.dish.nutritional.total_fat)},
+      { type: 'Cholesterol', amount: (this.dish.nutritional.cholesterol < 0 ? 'N/A' : this.dish.nutritional.cholesterol)},
+      { type: 'Sodium', amount: (this.dish.nutritional.sodium < 0 ? 'N/A' : this.dish.nutritional.sodium)},
+    ];
+    this.dataSource = this.ELEMENT_DATA;
   }
 
 }
