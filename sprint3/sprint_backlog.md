@@ -14,4 +14,4 @@
 | 024 | As a consumer, I want to leave rating on dishes, so I can leave a brief and quick opinion of the dish. | 4 | MEDIUM | Users must be logged in to leave a rating. | Matthew Hafner |
 | 026 | As a consumer, I want nutritional facts, so I can make a healthy decision of my food choice. | 5 | MEDIUM | Nutritional facts will be shown if the details are available from the owner. | Michael Nguyen |
 | 028 | As a restaurant owner, I want to be able to change the description of each dish. | 4 | HIGH | Valid input includes alphabetical and numerical characters. | Shravan Yandra |
-| 030 | As a restaurant owner, I want a way to remove images, so I can remove any previous picture of the dish. | 4 | HIGH | Dishes can be removed only by the restaurant owner  | Matthew Hafner |
+| 030 | As a restaurant owner, I want a way to remove images, so I can remove any previous picture of the dish. | 4 | HIGH | Dishes can be removed only by the restaurant owner  | Michael Nguyen |
