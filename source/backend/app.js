@@ -75,6 +75,31 @@ const db = async function() {
         });
     });
 
+    // Code to make sure each dish has nutritional facts in the dataabase
+    database.Dish.findAll({raw: true}).then(function(dishes) {
+       if(dishes) {
+           for(var d=0;d<dishes.length;d++) {
+               const index = dishes[d].index;
+               database.Nutritional.findOne({
+                   where: {
+                       dish: index
+                   }
+               }).then(function(nutr) {
+                   if(!nutr) {
+                       database.Nutritional.build({
+                           calories: -1,
+                           total_fat: -1,
+                           cholesterol: -1,
+                           sodium: -1,
+                           dish: index
+                       }).save();
+                       console.log("Creating nutritional facts for dish " + index); 
+                   }
+               })
+           }
+       }
+    });
+
     // Setup api routes
     app.use('/api/products', products);
     app.use('/api/restaurants', restaurants);
