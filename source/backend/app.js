@@ -93,7 +93,7 @@ const db = async function() {
                            sodium: -1,
                            dish: index
                        }).save();
-                       console.log("Creating nutritional facts for dish " + index); 
+                       console.log("Creating nutritional facts for dish " + index);
                    }
                })
            }
@@ -135,9 +135,11 @@ if(!config.inprod) {
         sm_client.query('ALTER TABLE smartmenu.public.dishes ADD COLUMN category text', function (err, res) {
             sm_client.query('ALTER TABLE smartmenu.public.dishes ADD COLUMN images text', function (err, res) {
                 sm_client.query('ALTER TABLE smartmenu.public.reviews ADD COLUMN owner text', function (err, res) {
-                    sm_client.query('ALTER TABLE smartmenu.public.restaurants ADD COLUMN description text, ADD COLUMN address text, ADD COLUMN city text, ADD COLUMN state text', function (err, res) {
-                        db();
-                        sm_client.end();
+                    sm_client.query('ALTER TABLE smartmenu.public.reviews ALTER COLUMN dish TYPE integer USING dish::integer;', function (err, res) {
+                        sm_client.query('ALTER TABLE smartmenu.public.restaurants ADD COLUMN description text, ADD COLUMN address text, ADD COLUMN city text, ADD COLUMN state text', function (err, res) {
+                            db();
+                            sm_client.end();
+                        });
                     });
                 });
             });

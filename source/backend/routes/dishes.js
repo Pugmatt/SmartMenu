@@ -54,24 +54,52 @@ router.get('/reviews/get/:id', function(req, res, next) {
         if(dish) {
             database.Review.findAll({
                 where: {
-                    dish: database.Dish.decodeID(req.params.id)
+                    dish: dish.index
                 },
                 raw: true
             }).then(function(reviews) {
                for(var i=0;i<reviews.length;i++) {
+                   // Remove index and dish
                    delete reviews[i].index;
+                   delete reviews[i].dish;
                }
-               res.json(reviews);
+                convertUserIds(reviews, 0, function(result) {
+                    res.json({reviews: result});
+                });
             });
         }
         else
             res.json({error: "Dish does not exist."});
-
-
-        res.json(dish);
     }).catch(function(err) { res.json({error: "Database error: " + err}); });
 
 });
+
+// Take array of reviews and convert review owner IDs to usernames
+function convertUserIds(reviews, i, callback) {
+    // If no more reviews, return empty
+    if(reviews.length <= i)
+        callback([]);
+
+    database.User.findOne({
+        where: {
+            index: reviews[i].owner
+        }
+    }).then(function(user) {
+        if(user) {
+            reviews[i].username = user.firstname + " " + user.lastname;
+        }
+        else {
+            reviews[i].username = "N/A";
+        }
+        delete reviews[i].owner;
+        convertUserIds(reviews, i+1, function(result) {
+            // Add to current result and callback
+            result.push(reviews[i]);
+            callback(result);
+        });
+    });
+}
+
 
 router.post('/reviews/add', func.isLoggedIn, function(req, res, next) {
     if (req.body && req.body.comment && req.body.rating && req.body.dish) {
@@ -86,13 +114,13 @@ router.post('/reviews/add', func.isLoggedIn, function(req, res, next) {
                 raw: true
             }).then(function(dish) {
                 if(dish) {
-                    console.log(req.body.dish);
+                    console.log(database.Dish.decodeID(req.body.dish));
                     console.log(dish);
                     database.Review.build({
                         owner: req.user.index,
                         comment: req.body.comment,
                         rating: req.body.rating,
-                        dish: database.Dish.decodeID(req.body.dish)
+                        dish: database.Dish.decodeID(req.body.dish)[0]
                     }).save().then(function(review) {
                         delete review.index;
                         review.owner = req.user.username;

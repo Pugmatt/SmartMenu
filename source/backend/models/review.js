@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
         owner: DataTypes.TEXT,
         comment: DataTypes.TEXT,
         rating: DataTypes.INTEGER,
-        dish: DataTypes.TEXT,
+        dish: DataTypes.INTEGER,
     }, {
         tableName: 'reviews',
         timestamps: false,

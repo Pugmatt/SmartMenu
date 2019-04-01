@@ -30,7 +30,13 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     User.findById = function (id, callback) {
-        User.findOne({ where: { index: id } })
+        User.findOne(
+            {
+                where: {
+                index: id
+              },
+                raw: true
+            })
         .then(function (user) {
           if (!user) {
             var err = "User does not exist";
