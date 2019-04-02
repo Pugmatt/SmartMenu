@@ -21,8 +21,11 @@
           <button type="submit" mat-raised-button *ngIf="dish.images < 1 && userService.user" (click)="uploader()">Be the first to upload an image!</button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <mat-card>
-          <mat-icon *ngFor="let i of [1,2,3,4,5]">star</mat-icon>
+        <mat-card *ngIf="dish.rating">
+          <mat-icon *ngFor="let i of createRange(dish.rating);">star</mat-icon>
+        </mat-card>
+        <mat-card *ngIf="!dish.rating" style="color: grey;">
+          No ratings available
         </mat-card>
       </mat-grid-tile>
       <mat-grid-tile [rowspan]="4" [colspan]="1">

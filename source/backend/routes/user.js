@@ -6,7 +6,7 @@ const func = require('../functions.js');
 
 /* */
 const database = require("../database.js");
-
+const countries = require("../countries");
 
 /* GET user information if logged in. */
 router.get('/get', func.isLoggedIn, function(req, res, next) {
@@ -81,7 +81,8 @@ router.post('/create', function(req, res, next) {
     }
   }
   else if(req.body && !req.body.consumer && req.body.password && req.body.email && req.body.firstname && req.body.lastname
-    && req.body.restaurant && req.body.restaurant.name && req.body.restaurant.description) {
+    && req.body.restaurant && req.body.restaurant.name && req.body.restaurant.description && req.body.restaurant.state
+    && req.body.restaurant.city && req.body.restaurant.zip && req.body.restaurant.address) {
     
     var valid = infoValid(req.body);
 
@@ -89,8 +90,12 @@ router.post('/create', function(req, res, next) {
       res.json({error: valid});
     else {
       database.Restaurant.build({
-        name: req.body.restaurant.name,
-        description: req.body.restaurant.description,
+          name: req.body.restaurant.name,
+          description: req.body.restaurant.description,
+          state: req.body.restaurant.state,
+          city: req.body.restaurant.city,
+          zip: req.body.restaurant.zip,
+          address: req.body.restaurant.address,
       }).save().then(function(restaurant) {
         database.User.build({
           consumer: req.body.consumer,
@@ -131,7 +136,9 @@ function infoValid(body) {
     // Check variables are correct types
     if(!(typeof body.password == 'string' && typeof body.email == 'string' &&
       typeof body.firstname == 'string' && typeof body.lastname == 'string' &&
-      typeof body.restaurant.name == 'string' && typeof body.restaurant.description == 'string'))
+      typeof body.restaurant.name == 'string' && typeof body.restaurant.description == 'string' && typeof body.restaurant.description == 'string'
+        && typeof body.restaurant.state == 'string'
+        && typeof body.restaurant.city == 'string' && typeof body.restaurant.zip == 'string' && typeof body.restaurant.address == 'string'))
       return "Invalid variable types";
 
     // Check if variables have correct lengths and properties
@@ -141,6 +148,14 @@ function infoValid(body) {
       return "Company description must greater than 0 and less than 2000 characters";
     else if(body.password.length < 6 || body.password.length > 20)
       return "Password must greater than 6 and less than 20 characters";
+    else if(body.restaurant.state <= 1)
+      return "Invalid state";
+    else if(body.restaurant.city <= 1)
+      return "Invalid state";
+    else if(body.restaurant.zip <= 1 || !(/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(body.restaurant.zip)))
+      return "Invalid zip code";
+    else if(body.restaurant.address >= 1)
+      return "Invalid address";
     else if(!validateEmail(body.email))
       return "Invalid email address";
     else if(body.firstname.length < 1 || body.firstname.length > 50 ||

@@ -3,4 +3,9 @@ export class Restaurant {
   name: string;
   created: string;
   description: string;
+  country: string;
+  state: string;
+  city: string;
+  zip: string;
+  address: string;
 }

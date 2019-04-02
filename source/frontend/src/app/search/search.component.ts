@@ -49,16 +49,16 @@ export class SearchComponent implements OnInit {
 
   next() {
     this.router.navigate(['/search', !this.restaurant ? "all" : this.restaurant, !this.location ? "all" : this.location, ++this.page]);
-    this.searchRestaurants(this.restaurant + " " + this.location, this.page);
+    this.searchRestaurants((this.restaurant == "all" ? -1 : this.restaurant) + "/" + (this.location == "all" ? -1 : this.location), this.page);
   }
 
   back() {
     this.router.navigate(['/search', !this.restaurant ? "all" : this.restaurant, !this.location ? "all" : this.location, --this.page]);
-    this.searchRestaurants(this.restaurant + " " + this.location, this.page);
+    this.searchRestaurants((this.restaurant == "all" ? -1 : this.restaurant) + "/" + (this.location == "all" ? -1 : this.location), this.page);
   }
 
   ngOnInit() {
-    this.searchRestaurants(this.restaurant + " " + this.location, this.page);
+    this.searchRestaurants((this.restaurant == "all" ? -1 : this.restaurant) + "/" + (this.location == "all" ? -1 : this.location), this.page);
   }
 
 }

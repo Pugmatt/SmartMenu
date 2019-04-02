@@ -52,6 +52,10 @@ export class RegisterComponent
       const restaurant: Restaurant = new Restaurant();
       restaurant.name = values.companyName;
       restaurant.description = values.companyDesc;
+      restaurant.state = values.companyState;
+      restaurant.city = values.companyCity;
+      restaurant.zip = values.companyZip;
+      restaurant.address = values.companyAddress;
       user.restaurant = restaurant;
     }
     // Check if information is valid before sending to backend
@@ -107,6 +111,14 @@ infoValid(user) {
       return "Password must greater than 6 and less than 20 characters";
     else if(!this.validateEmail(user.email))
       return "Invalid email address";
+    else if(user.restaurant.state <= 1)
+      return "Invalid state";
+    else if(user.restaurant.city <= 1)
+      return "Invalid state";
+    else if(user.restaurant.zip <= 1 || !(/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(user.restaurant.zip)))
+      return "Invalid zip code";
+    else if(user.restaurant.address >= 1)
+      return "Invalid address";
     else if(user.firstname.length < 1 || user.firstname.length > 50 ||
       user.lastname.length < 1 && user.lastname.length > 50)
       return "Names must greater than 1 and less than 20 characters"

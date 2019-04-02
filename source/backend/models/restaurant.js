@@ -18,7 +18,8 @@ module.exports = function(sequelize, DataTypes) {
         description: DataTypes.TEXT,
         address: DataTypes.TEXT,
         city: DataTypes.TEXT,
-        state: DataTypes.TEXT
+        state: DataTypes.TEXT,
+        zip: DataTypes.TEXT
     }, {
         tableName: 'restaurants',
         timestamps: false,

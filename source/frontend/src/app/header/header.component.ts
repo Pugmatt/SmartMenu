@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 import {NavItem} from '../nav-item';
 import {NavigationService} from '../navigation.service';
 

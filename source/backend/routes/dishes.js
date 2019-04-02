@@ -27,18 +27,23 @@ router.get('/get/:id', function(req, res, next) {
       index: database.Dish.decodeID(req.params.id)
     },
     raw: true}).then(function(dish) {
-      // Remove index from info
-      dish.id = req.params.id
-      delete dish.index;
+        database.Dish.getRating(dish, function(rating) {
+            dish.rating = rating;
+            // Remove index from info
+            dish.id = req.params.id
+            delete dish.index;
 
-      database.Nutritional.find({where: {
-        dish: database.Dish.decodeID(req.params.id)
-      },
-      raw: true}).then(function(nutritional) {
-        delete nutritional.index;
-        dish.nutritional = nutritional;
-        res.json(dish);
-      });
+            database.Nutritional.find({
+                where: {
+                    dish: database.Dish.decodeID(req.params.id)
+                },
+                raw: true
+            }).then(function (nutritional) {
+                delete nutritional.index;
+                dish.nutritional = nutritional;
+                res.json(dish);
+            });
+        });
     }).catch(function(err) { res.json({error: "Database error: " + err}); });
     
 });

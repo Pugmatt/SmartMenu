@@ -75,11 +75,13 @@ router.get('/dishes/:id', function(req, res, next) {
 });
 
 /* GET restaurant listing based on search query. */
-router.get('/:query/:page', function(req, res, next) {
-
-  if(!req.params.query && !req.params.page && typeof req.params.page == "number")
+router.get('/:query/:location/:page', function(req, res, next) {
+  if(!(req.params.query || req.params.location) && !req.params.page && typeof req.params.page == "number")
      res.json({error: "Invalid data"});
-     
+
+  req.params.location = (req.params.location == -1 ? "" : req.params.location);
+  req.params.query = (req.params.query == -1 ? "" : req.params.query);
+  let location = req.params.location.split(" ");
   let query = req.params.query.split(" ");
   // Split each word in query into a seperate iLike condition for the SQL call
   query = query.map(function(item) {
@@ -87,37 +89,133 @@ router.get('/:query/:page', function(req, res, next) {
       [database.Sequelize.Op.iLike]: '%' + item + '%'
     };
   });
-  if(query) {
-    database.Restaurant.findAndCountAll({where: {
-          name: {
-              [database.Sequelize.Op.or]: query
-          }
-      }}).then(function(data) {
-      let page = req.params.page;
-      let pages = Math.ceil(data.count / MAX_LISTING);
-      let offset = MAX_LISTING * (page - 1);
+  var locationDB = location.map(function(item) {
+        return {
+            [database.Sequelize.Op.iLike]: '%' + item + '%'
+        };
+  });
+  if(req.params.query) {
+      if(!req.params.location) {
+          database.Restaurant.findAndCountAll({
+              where: {
+                  name: {
+                      [database.Sequelize.Op.or]: query
+                  }
+              }
+          }).then(function (data) {
+              let page = req.params.page;
+              let pages = Math.ceil(data.count / MAX_LISTING);
+              let offset = MAX_LISTING * (page - 1);
 
-      database.Restaurant.findAll({
-        limit: MAX_LISTING,
-        offset: offset,
-        where: {
-            name: {
-                [database.Sequelize.Op.or]: query
-            }
-        },
-        raw: true
-      }).then(function(restaurants) {
-          // Remove index from info
-          for(var i=0;i<restaurants.length;i++) {
-            restaurants[i].id = database.Restaurant.encodeID(restaurants[i].index);
-            delete restaurants[i].index;
-          }
-          res.json({restaurants: restaurants, pageCount: pages, total: data.count});
-      }).catch(function(err) { res.json({error: "Database error: " + err}); });
-    });
+              database.Restaurant.findAll({
+                  limit: MAX_LISTING,
+                  offset: offset,
+                  where: {
+                      name: {
+                          [database.Sequelize.Op.or]: query
+                      }
+                  },
+                  raw: true
+              }).then(function (restaurants) {
+                  // Remove index from info
+                  for (var i = 0; i < restaurants.length; i++) {
+                      restaurants[i].id = database.Restaurant.encodeID(restaurants[i].index);
+                      delete restaurants[i].index;
+                  }
+                  res.json({restaurants: restaurants, pageCount: pages, total: data.count});
+              }).catch(function (err) {
+                  res.json({error: "Database error: " + err});
+              });
+          });
+      }
+      else {
+          database.Restaurant.findAndCountAll({
+              where: {
+                  name: {
+                      [database.Sequelize.Op.or]: query
+                  },
+                  [database.Sequelize.Op.or]: [
+                      {state: { [database.Sequelize.Op.or]: locationDB } },
+                      {city: { [database.Sequelize.Op.or]: locationDB }},
+                      {zip: { [database.Sequelize.Op.or]: locationDB }},
+                      {address: { [database.Sequelize.Op.or]: locationDB }}
+                  ]
+              }
+          }).then(function (data) {
+              let page = req.params.page;
+              let pages = Math.ceil(data.count / MAX_LISTING);
+              let offset = MAX_LISTING * (page - 1);
+
+              database.Restaurant.findAll({
+                  limit: MAX_LISTING,
+                  offset: offset,
+                  where: {
+                      name: {
+                          [database.Sequelize.Op.or]: query
+                      },
+                      [database.Sequelize.Op.or]: [
+                          {state: { [database.Sequelize.Op.or]: locationDB } },
+                          {city: { [database.Sequelize.Op.or]: locationDB }},
+                          {zip: { [database.Sequelize.Op.or]: locationDB }},
+                          {address: { [database.Sequelize.Op.or]: locationDB }}
+                      ]
+                  },
+                  raw: true
+              }).then(function (restaurants) {
+                  // Remove index from info
+                  for (var i = 0; i < restaurants.length; i++) {
+                      restaurants[i].id = database.Restaurant.encodeID(restaurants[i].index);
+                      delete restaurants[i].index;
+                  }
+                  res.json({restaurants: restaurants, pageCount: pages, total: data.count});
+              }).catch(function (err) {
+                  res.json({error: "Database error: " + err});
+              });
+          });
+      }
+  }
+  else if(req.params.location) {
+      console.log("test")
+          database.Restaurant.findAndCountAll({
+              where: {
+                  [database.Sequelize.Op.or]: [
+                      {state: { [database.Sequelize.Op.or]: locationDB } },
+                      {city: { [database.Sequelize.Op.or]: locationDB }},
+                      {zip: { [database.Sequelize.Op.or]: locationDB }},
+                      {address: { [database.Sequelize.Op.or]: locationDB }}
+                  ]
+              }
+          }).then(function (data) {
+              let page = req.params.page;
+              let pages = Math.ceil(data.count / MAX_LISTING);
+              let offset = MAX_LISTING * (page - 1);
+
+              database.Restaurant.findAll({
+                  limit: MAX_LISTING,
+                  offset: offset,
+                  where: {
+                      [database.Sequelize.Op.or]: [
+                          {state: { [database.Sequelize.Op.or]: locationDB } },
+                          {city: { [database.Sequelize.Op.or]: locationDB }},
+                          {zip: { [database.Sequelize.Op.or]: locationDB }},
+                          {address: { [database.Sequelize.Op.or]: locationDB }}
+                      ]
+                  },
+                  raw: true
+              }).then(function (restaurants) {
+                  // Remove index from info
+                  for (var i = 0; i < restaurants.length; i++) {
+                      restaurants[i].id = database.Restaurant.encodeID(restaurants[i].index);
+                      delete restaurants[i].index;
+                  }
+                  res.json({restaurants: restaurants, pageCount: pages, total: data.count});
+              }).catch(function (err) {
+                  res.json({error: "Database error: " + err});
+              });
+          });
   }
   else {
-    res.json();
+    res.json({error: "No query or location specified"});
   }
 });
 
