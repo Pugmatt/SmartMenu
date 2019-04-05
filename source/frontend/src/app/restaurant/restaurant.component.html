@@ -8,6 +8,14 @@
     <button type="submit" mat-raised-button (click)="addDishes()">Add Dish</button>
   </mat-card>
 </div>
+
+<div *ngFor="let dish of organizedDishes" routerLink="/dish/{{dish.id}}">
+  <div class="dish mat-elevation-z4"
+       matRipple matTooltip="{{dish.rating}} " [ngStyle]="{ 'background-image': 'url(/api/images/dish/' + dish.id + '/1)' }">
+  </div>
+</div>
+
+
 <p>
   <mat-form-field>
     <input type="text" [(ngModel)]="search" name="dish" ngModel matInput placeholder="Search for Dishes" />
@@ -27,3 +35,5 @@
     </mat-card-content>
   </mat-card>
 </div>
+
+

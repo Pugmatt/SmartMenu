@@ -42,5 +42,27 @@
       <mat-grid-tile [rowspan]="2" [colspan]="2">
         <button type="submit" mat-raised-button *ngIf="userService.user" (click)="review()">Review this Dish</button>
       </mat-grid-tile>
+
+
+
+<!--ALonso part-->
+      <div *ngFor="let review of reviews" >
+        <mat-grid-tile [colspan]="2" id="reviews">
+          
+            
+            <b style="margin-right:10px;">{{review.username}}</b>
+            <p>{{review.comment}}</p>
+
+            <mat-card *ngIf="dish.rating" style="margin-left: 10px;">
+                <mat-icon *ngFor="let i of createRange(review.rating);">star</mat-icon>
+              </mat-card>
+
+        </mat-grid-tile>
+      </div>
+
+<!--up to here-->
   </mat-grid-list>
 </div>
+
+
+

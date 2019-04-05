@@ -7,5 +7,6 @@ export class Dish {
     category: string;
     restaurant: string;
     images: number;
+    rating: number;
 }
   

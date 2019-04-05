@@ -12,6 +12,7 @@ import { UploaderComponent } from '../uploader/uploader.component';
 import { Restaurant } from "../restaurant"
 import { Dish } from "../dish/dish";
 import {NgModel} from "@angular/forms";
+import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-restaurant',
@@ -31,12 +32,27 @@ export class RestaurantComponent implements OnInit {
   private router: Router,
   public dialog: MatDialog) { }
 
+
+  public organizedDishes: Dish[] = [];
+
   ngOnInit() {
     this.restaurantInfoService.getRestaurant(this.route.snapshot.params.id)
     .subscribe(restaurant => this.restaurant = restaurant);
 
     this.restaurantInfoService.getDishes(this.route.snapshot.params.id)
-      .subscribe(categories => {this.categories = categories; });
+      .subscribe(categories => {
+        this.categories = categories; 
+        for(var i=0;i<this.categories.length;i++)
+        {
+            for(var j=0; j<this.categories[i].dishes.length;j++)
+            {
+              this.organizedDishes.push(this.categories[i].dishes[j]);
+            }
+        }
+        this.organizedDishes.sort(function(a,b){return a.rating-b.rating});
+      
+      });
+    
   }
 
   uploader() {
