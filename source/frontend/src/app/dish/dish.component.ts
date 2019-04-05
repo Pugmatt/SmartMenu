@@ -7,6 +7,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DishService } from "./dish.service";
 import { UserService } from "../user.service";
 
+import{ReviewService} from "../review/review.service";
+
 import { CreateDishComponent } from './create-dish/create-dish.component';
 
 import { UploaderComponent } from '../uploader/uploader.component';
@@ -14,6 +16,8 @@ import { UploaderComponent } from '../uploader/uploader.component';
 import { ReviewComponent } from '../review/review.component';
 
 import { Dish } from "./dish";
+
+import {Review} from "../review/review";
 
 @Component({
   selector: 'app-dish',
@@ -23,11 +27,14 @@ import { Dish } from "./dish";
 export class DishComponent implements OnInit {
 
   public dish: Dish;
+  public reviews: Review[];
   
   constructor(private dishService: DishService,
   private userService: UserService,
+  private reviewService: ReviewService,
   private route: ActivatedRoute,
   private router: Router,
+
   public dialog: MatDialog) { }
 
   public error: String;
@@ -40,7 +47,17 @@ export class DishComponent implements OnInit {
       console.log(error) 
       this.error = error.error;
     });
+
+
+    this.reviewService.getReviews(this.route.snapshot.params.id)
+    .subscribe(review => { this.reviews = review.reviews;}, error => {
+      console.log(error) 
+      this.error = error.error;
+    });
+
   }
+
+
 
   // Change image based on selection
   changeImage(index: number) {
@@ -69,7 +86,6 @@ export class DishComponent implements OnInit {
         if (status.status === 200) {
             location.reload();
             root.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-              root.router.navigate(['/dish', root.route.snapshot.params.id]));
         }
       }}
     });

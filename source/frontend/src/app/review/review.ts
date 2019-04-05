@@ -1,5 +1,5 @@
 export class Review {
-  name: string;
+  username: string;
   comment: string;
   rating: number;
   dish: string;
