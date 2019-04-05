@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-search-box',
@@ -15,10 +16,14 @@ export class SearchBoxComponent implements OnInit {
   }
   
   constructor(
-    private router: Router) { 
+    private router: Router,
+    private http: HttpClient) { 
     }
 
+  public locationInfo;
+
   ngOnInit() {
+    this.http.get('http://api.ipstack.com/check?access_key=b7637044eac5914b50f1bc026ab8db08&fields=country_name,region_name,city,zip').subscribe(info => this.locationInfo = info);
   }
 
 }

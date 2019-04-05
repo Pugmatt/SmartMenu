@@ -62,6 +62,10 @@ export class DishComponent implements OnInit {
     });
   }
 
+  removeImage() {
+    
+  }
+
   uploader() {
     const root = this;
     let dialogRef = this.dialog.open(UploaderComponent, {
