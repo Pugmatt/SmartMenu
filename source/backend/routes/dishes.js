@@ -63,14 +63,19 @@ router.get('/reviews/get/:id', function(req, res, next) {
                 },
                 raw: true
             }).then(function(reviews) {
-               for(var i=0;i<reviews.length;i++) {
-                   // Remove index and dish
-                   delete reviews[i].index;
-                   delete reviews[i].dish;
-               }
-                convertUserIds(reviews, 0, function(result) {
-                    res.json({reviews: result});
-                });
+                if(reviews) {
+                    for (var i = 0; i < reviews.length; i++) {
+                        // Remove index and dish
+                        delete reviews[i].index;
+                        delete reviews[i].dish;
+                    }
+                    convertUserIds(reviews, 0, function (result) {
+                        res.json({reviews: result});
+                    });
+                }
+                else {
+                    res.json({reviews: []});
+                }
             });
         }
         else
@@ -83,7 +88,7 @@ router.get('/reviews/get/:id', function(req, res, next) {
 function convertUserIds(reviews, i, callback) {
     // If no more reviews, return empty
     if(reviews.length <= i)
-        callback([]);
+        return callback([]);
 
     database.User.findOne({
         where: {

@@ -12,7 +12,6 @@ import { UploaderComponent } from '../uploader/uploader.component';
 import { Restaurant } from "../restaurant"
 import { Dish } from "../dish/dish";
 import {NgModel} from "@angular/forms";
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-restaurant',

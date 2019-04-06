@@ -45,34 +45,55 @@ router.get('/dishes/:id', function(req, res, next) {
             restaurant: database.Restaurant.decodeID(req.params.id)
         },
         raw: true
-    }).then(function(dishes) {
-        // Split dishes into categories
-        var categories = [];
+    }).then(function(preDishes) {
+        if(preDishes) {
+            getRatings(preDishes, 0, function (dishes) {
+                // Split dishes into categories
+                var categories = [];
 
-        for(var i=0;i<dishes.length;i++) {
-            dishes[i].id = database.Dish.encodeID(dishes[i].index);
-            delete dishes[i].index;
+                for (var i = 0; i < dishes.length; i++) {
+                    dishes[i].id = database.Dish.encodeID(dishes[i].index);
+                    delete dishes[i].index;
 
-            var exists = false;
-            for(var c=0;c<categories.length;c++) {
-                if(categories[c] && dishes[i].category == categories[c].name) {
-                    categories[c].push(dishes[i]);
-                    exists = true;
+                    var exists = false;
+                    for (var c = 0; c < categories.length; c++) {
+                        if (categories[c] && dishes[i].category == categories[c].name) {
+                            categories[c].push(dishes[i]);
+                            exists = true;
+                        }
+                    }
+
+                    if (!exists) {
+                        let category = {
+                            name: dishes[i].category,
+                            dishes: [dishes[i]]
+                        };
+                        categories.push(category);
+                    }
                 }
-            }
-
-            if(!exists) {
-                let category = {
-                    name: dishes[i].category,
-                    dishes: [dishes[i]]
-                };
-                categories.push(category);
-            }
+                res.json(categories);
+            });
         }
-        console.log(categories)
-        res.json(categories);
-    }).catch(function(err) { res.json({error: "Database error: " + err}); });
+        else {
+            res.json([]);
+        }
+    }).catch(function(err) { console.log(err); res.json({error: "Database error: " + err}); });
 });
+
+function getRatings(dishes, i, callback) {
+    // If no more reviews, return empty
+    if(dishes.length <= i)
+        return callback([]);
+
+    database.Dish.getRating(dishes[i], function(rating) {
+        dishes[i].rating = rating;
+
+        getRatings(dishes, i+1, function(result) {
+            result.push(dishes[i]);
+            callback(result);
+        });
+    });
+}
 
 /* GET restaurant listing based on search query. */
 router.get('/:query/:location/:page', function(req, res, next) {
