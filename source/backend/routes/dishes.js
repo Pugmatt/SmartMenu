@@ -210,7 +210,16 @@ router.post('/removeImage', func.isLoggedIn, function(req, res, next) {
         raw: true
     }).then(function (dish) {
             if(dish) {
-                 fs.unlinkSync(req.body.dish.id + "_" + req.body.image + ".png")
+                 fs.unlink("./images/dishes/" + req.body.dish.id + "_" + req.body.image + ".png", function(err){
+                     if(err)
+                     {
+                        res.json({error: err});
+                     }
+                     else
+                     {
+                         res.json({msg:"sucess"});
+                     }
+                 })
             }
     });
 });
