@@ -3,7 +3,7 @@
       <input type="text" name="restaurant" ngModel matInput placeholder="Restaurant" />
     </mat-form-field>
     <mat-form-field>
-      <input type="text" name="location" ngModel matInput placeholder="{{locationInfo.city}}, {{locationInfo.region_name}} {{locationInfo.zip}}"/>
+      <input type="text" name="location" ngModel matInput placeholder="City, State ZIP..." value="{{locationInfo.city}}, {{locationInfo.region_name}} {{locationInfo.zip}}"/>
     </mat-form-field>
     <button type="submit" mat-raised-button>Search</button>
 </form>

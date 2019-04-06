@@ -19,6 +19,8 @@ import { Dish } from "./dish";
 
 import {Review} from "../review/review";
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 @Component({
   selector: 'app-dish',
   templateUrl: './dish.component.html',
@@ -34,6 +36,7 @@ export class DishComponent implements OnInit {
   private reviewService: ReviewService,
   private route: ActivatedRoute,
   private router: Router,
+  private http: HttpClient,
 
   public dialog: MatDialog) { }
 
@@ -57,8 +60,6 @@ export class DishComponent implements OnInit {
 
   }
 
-
-
   // Change image based on selection
   changeImage(index: number) {
     this.currentImage = index;
@@ -80,20 +81,23 @@ export class DishComponent implements OnInit {
   }
 
   removeImage() {
-    
-  }
+    this.http.post("/api/dish/removeImage", {image: this.currentImage, dish: this.dish}, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })}).subscribe(msg => {});
+    }
 
-  uploader() {
-    const root = this;
-    let dialogRef = this.dialog.open(UploaderComponent, {
-      data: { directory: 'dish', id: this.route.snapshot.params.id, cb: function(status) {
-        if (status.status === 200) {
-            location.reload();
-            root.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-        }
-      }}
-    });
-  }
+    uploader() {
+      const root = this;
+      let dialogRef = this.dialog.open(UploaderComponent, {
+        data: { directory: 'dish', id: this.route.snapshot.params.id, cb: function(status) {
+          if (status.status === 200) {
+            root.currentImage = 2;
+            root.currentImage = 1;
+              root.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+                root.router.navigate(['/dish', root.route.snapshot.params.id]));
+          }
+        }}
+      });        
+    }
 
   // Create range for gallery looping through {{disk.images}} images
   createRange(number){

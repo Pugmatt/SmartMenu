@@ -21,7 +21,7 @@
           <button type="submit" mat-raised-button *ngIf="dish.images < 1 && userService.user" (click)="uploader()">Be the first to upload an image!</button>
       </mat-grid-tile>
       <mat-grid-tile>
-          <button type="submit" mat-raised-button *ngIf="dish.images >= 1 && userService.user" (click)="removeImage()">Remove an Image</button>
+          <button type="submit" mat-raised-button *ngIf="dish.images >= 1 && userService.user" (click)="removeImage()">Remove Image</button>
       </mat-grid-tile>
       <mat-grid-tile>
         <mat-card *ngIf="dish.rating">

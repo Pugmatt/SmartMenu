@@ -194,6 +194,22 @@ router.post('/add', func.isLoggedIn, function(req, res, next) {
     
 });
 
+router.post('/removeImage', func.isLoggedIn, function(req, res, next) {
+    
+    var fs = require('fs');
+
+    database.Dish.findOne({
+        where: {
+            index: database.Dish.decodeID(req.body.dish.id)
+        },
+        raw: true
+    }).then(function (dish) {
+            if(dish) {
+                 fs.unlinkSync(req.body.dish.id + "_" + req.body.image + ".png")
+            }
+    });
+});
+
 /* GET restaurant listing based on search query. */
 router.get('/:query/:page', function(req, res, next) {
 
