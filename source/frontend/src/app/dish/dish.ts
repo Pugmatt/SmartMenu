@@ -6,7 +6,6 @@ export class Dish {
     description: string;
     category: string;
     restaurant: string;
-    images: number;
+    images: string[];
     rating: number;
 }
-  

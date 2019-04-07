@@ -42,12 +42,18 @@ export class DishComponent implements OnInit {
 
   public error: String;
 
-  public currentImage: number = 1;
+  public currentImage: string;
 
   ngOnInit() {
     this.dishService.getDish(this.route.snapshot.params.id)
-    .subscribe(dish => { this.dish = dish; }, error => {
-      console.log(error) 
+    .subscribe(dish => {
+      this.dish = dish;
+         if(dish.images.length > 0)
+          this.currentImage = dish.images[0];
+         else
+           this.currentImage = 'default.png';
+      }, error => {
+      console.log(error) ;
       this.error = error.error;
     });
 
@@ -61,31 +67,72 @@ export class DishComponent implements OnInit {
   }
 
   // Change image based on selection
-  changeImage(index: number) {
-    this.currentImage = index;
+  changeImage(image: string) {
+    this.currentImage = image;
   }
 
-  // Return API url based on image index
-  getUrl(index: number) {
-    return 'url(/api/images/dish/' + this.dish.id + '/' + (index+1) + ')';
+  // Return API url based on image
+  getUrl(image: string) {
+    return 'url(/api/images/dish/' + this.dish.id + '/' + image + ')';
   }
 
   add() {
     let dialogRef = this.dialog.open(CreateDishComponent, {});
   }
 
+  remove() {
+    if (confirm('Are you sure you want to remove this dish?')) {
+      const root = this;
+      this.dishService.removeDish(this.route.snapshot.params.id)
+        .subscribe(msg => {
+          if (msg.error) {
+            alert(msg.error);
+          } else if (msg.success) {
+            root.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+              root.router.navigate(['/restaurant', root.dish.restaurant]));
+          }
+        }, error => {
+          console.log(error)
+          this.error = error.error;
+        });
+    }
+  }
+
   review() {
     let dialogRef = this.dialog.open(ReviewComponent, {
       data: { id: this.route.snapshot.params.id }
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.reviewService.getReviews(this.route.snapshot.params.id)
+          .subscribe(review => {
+            this.reviews = review.reviews;
+          }, error => {
+            console.log(error)
+            this.error = error.error;
+          });
+      }
+    });
   }
 
   removeImage() {
-    this.http.post("/api/dish/removeImage", {image: this.currentImage, dish: this.dish}, {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })}).subscribe(msg => {});
+    if (confirm('Are you sure you want to remove this image?')) {
+      const root = this;
+      this.http.post("/api/dish/removeImage", {image: this.currentImage, dish: this.dish}, {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      }).subscribe(msg => {
+        if (msg.success) {
+          root.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+            root.router.navigate(['/dish', root.route.snapshot.params.id]));
+        }
+        else if (msg.error) {
+          alert(msg.error);
+        }
+      });
     }
+  }
 
-    uploader() {
+  uploader() {
       const root = this;
       let dialogRef = this.dialog.open(UploaderComponent, {
         data: { directory: 'dish', id: this.route.snapshot.params.id, cb: function(status) {

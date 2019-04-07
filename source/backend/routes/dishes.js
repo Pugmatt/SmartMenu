@@ -5,6 +5,8 @@ const database = require("../database.js");
 
 const func = require('../functions.js');
 
+var fs = require('fs');
+
 const MAX_LISTING = 5;
 
 /* GET restaurant listing. */
@@ -30,8 +32,10 @@ router.get('/get/:id', function(req, res, next) {
         database.Dish.getRating(dish, function(rating) {
             dish.rating = rating;
             // Remove index from info
-            dish.id = req.params.id
+            dish.id = req.params.id;
             delete dish.index;
+
+            dish.restaurant = database.Restaurant.encodeID(dish.restaurant);
 
             database.Nutritional.find({
                 where: {
@@ -41,7 +45,17 @@ router.get('/get/:id', function(req, res, next) {
             }).then(function (nutritional) {
                 delete nutritional.index;
                 dish.nutritional = nutritional;
-                res.json(dish);
+                fs.readdir("./images/dishes/", (err, files) => {
+                    if (err) console.log(err);
+
+                    let images = [];
+                    for (const file of files) {
+                        if (file.indexOf(dish.id) != -1)
+                            images.push(file.replace(dish.id + "_", "").replace(".png", ""));
+                    }
+                    dish.images = images;
+                    res.json(dish);
+                });
             });
         });
     }).catch(function(err) { res.json({error: "Database error: " + err}); });
@@ -109,6 +123,46 @@ function convertUserIds(reviews, i, callback) {
         });
     });
 }
+
+router.post('/remove/', func.isLoggedIn, function(req, res, next) {
+    if (!(req.body && req.body.id))
+        res.json({error: "Invalid data"});
+    else {
+        database.Dish.findOne({
+            where: {
+                index: database.Dish.decodeID(req.body.id)
+            }
+        }).then(function (dish) {
+            if(dish) {
+                if (dish.dataValues.restaurant == req.user.restaurant) {
+                    fs.readdir("./images/dishes/", (err, files) => {
+                        if (err) console.log(err);
+
+                        for (const file of files) {
+                            if(file.indexOf(req.body.id) != -1) {
+                                fs.unlink("./images/dishes/" + file, err => {
+                                    if (err) console.log(err);
+                                });
+                            }
+                        }
+                    });
+                    dish.destroy().then(function () {
+                        res.json({success: true});
+                    }).catch(function (err) {
+                        res.json({error: "Database error: " + err});
+                    });
+                }
+                else {
+                    res.json({error: "Permission denied"});
+                }
+            }
+            else
+                res.json({error: "Dish does not exist"});
+        }).catch(function (err) {
+            res.json({error: "Database error: " + err});
+        });
+    }
+});
 
 
 router.post('/reviews/add', func.isLoggedIn, function(req, res, next) {
@@ -200,28 +254,27 @@ router.post('/add', func.isLoggedIn, function(req, res, next) {
 });
 
 router.post('/removeImage', func.isLoggedIn, function(req, res, next) {
-    
-    var fs = require('fs');
-
-    database.Dish.findOne({
-        where: {
-            index: database.Dish.decodeID(req.body.dish.id)
-        },
-        raw: true
-    }).then(function (dish) {
-            if(dish) {
-                 fs.unlink("./images/dishes/" + req.body.dish.id + "_" + req.body.image + ".png", function(err){
-                     if(err)
-                     {
+    if (!(req.body && req.body.dish && req.body.dish.id && req.body.image))
+        res.json({error: "Invalid data"});
+    else {
+        database.Dish.findOne({
+            where: {
+                index: database.Dish.decodeID(req.body.dish.id)
+            },
+            raw: true
+        }).then(function (dish) {
+            if (dish && dish.restaurant == req.user.restaurant) {
+                fs.unlink("./images/dishes/" + req.body.dish.id + "_" + req.body.image + ".png", function (err) {
+                    if (err) {
                         res.json({error: err});
-                     }
-                     else
-                     {
-                         res.json({msg:"sucess"});
-                     }
-                 })
+                    }
+                    else {
+                        res.json({success: true});
+                    }
+                })
             }
-    });
+        });
+    }
 });
 
 /* GET restaurant listing based on search query. */

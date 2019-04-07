@@ -45,7 +45,7 @@ export class ReviewComponent implements OnInit {
         if(msg.error)
           this.error = msg.error;
         else {
-          this.dialogRef.close();
+          this.dialogRef.close(true);
         }
       }, error => {
         this.error = error.error;
