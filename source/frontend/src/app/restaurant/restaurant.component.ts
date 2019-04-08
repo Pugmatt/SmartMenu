@@ -49,7 +49,7 @@ export class RestaurantComponent implements OnInit {
             }
         }
         this.organizedDishes.sort(function(a,b){return a.rating-b.rating});
-      
+        this.organizedDishes = this.organizedDishes.splice(0,5);      
       });
     
   }

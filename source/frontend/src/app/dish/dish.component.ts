@@ -118,9 +118,9 @@ export class DishComponent implements OnInit {
   removeImage() {
     if (confirm('Are you sure you want to remove this image?')) {
       const root = this;
-      this.http.post("/api/dish/removeImage", {image: this.currentImage, dish: this.dish}, {
+      this.http.post<RemoveImageResponse>("/api/dish/removeImage", {image: this.currentImage, dish: this.dish}, {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
-      }).subscribe(msg => {
+      }).subscribe(msg  => {
         if (msg.success) {
           root.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
             root.router.navigate(['/dish', root.route.snapshot.params.id]));
@@ -155,4 +155,9 @@ export class DishComponent implements OnInit {
     return items;
   }
 
+}
+
+export class RemoveImageResponse {
+  success: boolean;
+  error: string;
 }
