@@ -25,8 +25,13 @@ export class SearchBoxComponent implements OnInit {
 
 
   ngOnInit() {
-    this.http.get('http://api.ipstack.com/check?access_key=b7637044eac5914b50f1bc026ab8db08&fields=country_name,region_name,city,zip').subscribe(info => this.location = info.city + ' ' + info.region_name + ' ' + info.zip);
+    this.http.get<Location>('http://api.ipstack.com/check?access_key=b7637044eac5914b50f1bc026ab8db08&fields=country_name,region_name,city,zip').subscribe(info => this.location = info.city + ' ' + info.region_name + ' ' + info.zip);
 
   }
 
+}
+export class Location {
+  city;
+  region_name;
+  zip;
 }
