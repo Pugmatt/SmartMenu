@@ -38,6 +38,7 @@ import { CreateDishComponent } from './dish/create-dish/create-dish.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { ReviewComponent } from "./review/review.component";
 import { NutritionalFactsComponent } from './dish/nutritional-facts/nutritional-facts.component';
+import { ModifyDishComponent } from './dish/modify-dish/modify-dish.component';
 
 @NgModule({
   declarations: [
@@ -60,9 +61,10 @@ import { NutritionalFactsComponent } from './dish/nutritional-facts/nutritional-
     CreateDishComponent,
     UploaderComponent,
     ReviewComponent,
-    NutritionalFactsComponent
+    NutritionalFactsComponent,
+    ModifyDishComponent
   ],
-  entryComponents: [LoginComponent, CreateDishComponent, UploaderComponent, ReviewComponent],
+  entryComponents: [LoginComponent, CreateDishComponent, UploaderComponent, ReviewComponent, ModifyDishComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

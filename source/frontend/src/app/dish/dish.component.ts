@@ -20,6 +20,7 @@ import { Dish } from "./dish";
 import {Review} from "../review/review";
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {ModifyDishComponent} from "./modify-dish/modify-dish.component";
 
 @Component({
   selector: 'app-dish',
@@ -98,6 +99,21 @@ export class DishComponent implements OnInit {
     }
   }
 
+  modify() {
+    let dialogRef = this.dialog.open(ModifyDishComponent, {
+      data: { dish: this.dish }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("fwefwe");
+      console.log(result);
+      if (result) {
+        this.dish.name = result.name;
+        this.dish.description = result.description;
+        this.dish.category = result.category;
+      }
+    });
+  }
+
   review() {
     let dialogRef = this.dialog.open(ReviewComponent, {
       data: { id: this.route.snapshot.params.id }
@@ -115,12 +131,13 @@ export class DishComponent implements OnInit {
     });
   }
 
+
   removeImage() {
     if (confirm('Are you sure you want to remove this image?')) {
       const root = this;
-      this.http.post("/api/dish/removeImage", {image: this.currentImage, dish: this.dish}, {
+      this.http.post<RemoveImageResponse>("/api/dish/removeImage", {image: this.currentImage, dish: this.dish}, {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
-      }).subscribe(msg => {
+      }).subscribe(msg  => {
         if (msg.success) {
           root.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
             root.router.navigate(['/dish', root.route.snapshot.params.id]));
@@ -155,4 +172,8 @@ export class DishComponent implements OnInit {
     return items;
   }
 
+}
+export class RemoveImageResponse {
+  success: boolean;
+  error: string;
 }

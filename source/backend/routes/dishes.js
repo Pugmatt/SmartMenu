@@ -253,6 +253,44 @@ router.post('/add', func.isLoggedIn, function(req, res, next) {
     
 });
 
+router.post('/modify', func.isLoggedIn, function(req, res, next) {
+    if(req.body && req.body.id && req.body.name && req.body.category && req.body.description && req.body.restaurant) {
+        if(!(typeof req.body.id == 'string' && typeof req.body.name == 'string' && typeof req.body.category == 'string' && typeof req.body.description == 'string' &&
+            typeof req.body.restaurant  == 'string' && req.body.description.length <= 2000 && req.body.name.length <= 50 && req.body.name.length > 0 && req.body.category.length > 0 && req.body.restaurant.length > 0))
+            res.json({error: "Invalid variable types"});
+        else {
+            if(database.Restaurant.decodeID(req.body.restaurant) == req.user.restaurant) {
+                database.Dish.find({
+                    where: {
+                        index: database.Dish.decodeID(req.body.id)
+                    }
+                }).then(function(dish) {
+                    dish.name = req.body.name;
+                    dish.description = req.body.description;
+                    dish.category = req.body.category;
+                    database.Nutritional.find({
+                        where: {
+                            dish: database.Dish.decodeID(req.body.id)
+                        },
+                        raw: true
+                    }).then(function (nutritional) {
+                        delete nutritional.index;
+                        dish.nutritional = nutritional;
+                        dish.save().then(function() {
+                            res.json({dish: dish});
+                        });
+                    }).catch(function(err) { res.json({error: "Database error: " + err}); });
+                }).catch(function(err) { res.json({error: "Database error: " + err}); });
+            }
+            else
+                res.json({error: "Invalid permissions."});
+        }
+    }
+    else
+        res.json({error: "Invalid variables"});
+
+});
+
 router.post('/removeImage', func.isLoggedIn, function(req, res, next) {
     if (!(req.body && req.body.dish && req.body.dish.id && req.body.image))
         res.json({error: "Invalid data"});
