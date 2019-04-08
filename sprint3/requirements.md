@@ -16,25 +16,28 @@
 |            011 |           006 | The system/web application will display two components on the register screen for the user to choose, to decide whether they will sign up as a restaurant owner or consumer. | Verified |
 |            012 |           007 | The system/web application will store emails given by user in the user table in the database. | Verified |
 |            013 |           008 | User will be able to enter a description, name,  | Verified |
-|            013 |           008 | The system/web application will check if the HTTP request sent by the user is a valid request. (Is logged in, owns the restaurant, information valid characters) | Verified |
-|            013 |           010 | Users on registration will be required to put a username, email, and password. | Verified |
-|            013 |           010 | Users will be created through the registration page. The system/web application will put in the database a username, password (encrypted), and email.  | Verified |
-|            013 |           010 | The system/web application will encrypt passwords using bcrypt.  | Verified |
-|            013 |           011 | Angular will have the dishes preloaded when entering the restaurant page. Searching for dishes on the restaurant page will be client sided and will search for dishes using the preloaded dishes info.  | Verified |
-|            014 |           012 | Dishes with the same category will be listed under the same group on the restaurant page.  | Verified |
-|            015 |           014 | The system/web application will serve a rating, based on the average rating of reviews.  | Verified |
-|            016 |           015 | The frontend application will loop through image paths based on returned value from database of how many images there are for a dish.  | Verified |
-|            017 |           016 | The system/web application will accept new dishes only from the restaurant owner.  | Verified |
-|            018 |           017 | The system/web application will accept removal of dishes only from the restaurant owner.  | Verified |
-|            019 |           018 | The system/web application will accept input for the modified dish as long as it contains valid character.  | Verified |
-|            020 |           018 | The system/web application will accept input for the modified dish as long as the title does not go above 50 characters.  | Verified |
-|            021 |           018 | The system/web application will accept input for the modified dish as long as the description does not go above 2000 characters.  | Verified |
-|            022 |           020 | The system/web application will check to see if you are logged in and owner before highlighting information of least rated dishes.   | Verified |
-|            023 |           021 | The system/web application will display 10 reviews at a time on the dish page.  | Verified |
+|            014 |           008 | The system/web application will check if the HTTP request sent by the user is a valid request. (Is logged in, owns the restaurant, information valid characters) | Verified |
+|            015 |           010 | Users on registration will be required to put a username, email, and password. | Verified |
+|            016 |           010 | Users will be created through the registration page. The system/web application will put in the database a username, password (encrypted), and email.  | Verified |
+|            017 |           010 | The system/web application will encrypt passwords using bcrypt.  | Verified |
+|            018 |           011 | Angular will have the dishes preloaded when entering the restaurant page. Searching for dishes on the restaurant page will be client sided and will search for dishes using the preloaded dishes info.  | Verified |
+|            019 |           012 | Dishes with the same category will be listed under the same group on the restaurant page.  | Verified |
+|            020 |           014 | The system/web application will serve a rating, based on the average rating of reviews.  | Verified |
+|            021 |           015 | The frontend application will loop through image paths based on returned value from database of how many images there are for a dish.  | Verified |
+|            022 |           016 | The system/web application will accept new dishes only from the restaurant owner.  | Verified |
+|            023 |           017 | The system/web application will accept removal of dishes only from the restaurant owner.  | Verified |
+|            024 |           018 | The system/web application will accept input for the modified dish as long as it contains valid character.  | Verified |
+|            025 |           018 | The system/web application will accept input for the modified dish as long as the title does not go above 50 characters.  | Verified |
+|            026 |           018 | The system/web application will accept input for the modified dish as long as the description does not go above 2000 characters.  | Verified |
+|            027 |           020 | The system/web application will check to see if you are logged in and owner before highlighting information of least rated dishes.   | Verified |
+|            028 |           021 | The system/web application will display 10 reviews at a time on the dish page.  | Verified |
 |            024 |           022 | The system/web application will display the first image uploaded by restaurant before others.  | Verified |
-|            025 |           024 | The backend will make sure a user is logged in before accepting a review post.  | Verified |
-|            026 |           027 | The system/web application will have a section to display information of a dish such as the description.  | Verified |
-|            027 |           028 | The system/web application will check if the user is logged in and the restaurant owner before accepting a modification request.  | Verified |
-|            028 |           029 | The system/web application will verify that the image is a valid image type and size (1000x1000).  | Verified |
-|            029 |           030 | The system/web application will check if the user is logged in and the restaurant owner before accepting a dish image removal request.   | Verified |
-|            029 |           031 | The system/web application will organize and display dishes based on their categories. | Verified |
+|            029 |           024 | The backend will make sure a user is logged in before accepting a review post.  | Verified |
+|            030 |           027 | The system/web application will have a section to display information of a dish such as the description.  | Verified |
+|            031 |           028 | The system/web application will check if the user is logged in and the restaurant owner before accepting a modification request.  | Verified |
+|            032 |           029 | The system/web application will verify that the image is a valid image type and size (1000x1000).  | Verified |
+|            033 |           030 | The system/web application will check if the user is logged in and the restaurant owner before accepting a dish image removal request.   | Verified |
+|            034 |           031 | The system/web application will organize and display dishes based on their categories. | Verified |
+|            035 |           003 | The frontend application will call on a 3rd party API to grab information based on IP  | Verified |
+|            036 |           013 | The frontend application will sort the already gathered dishes, and sort them from greatest to least.  | Verified |
+|            037 |           026 | The system/web application will not make nutritional facts mandatory when creating dishes.  | Verified |
