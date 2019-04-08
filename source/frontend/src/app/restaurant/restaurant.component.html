@@ -9,10 +9,21 @@
   </mat-card>
 </div>
 
+<!--ALonso stuff-->
+<b>
+  <h1>Top 5 dishes</h1>
+</b>
+
 <div *ngFor="let dish of organizedDishes" routerLink="/dish/{{dish.id}}">
   <div class="dish mat-elevation-z4"
-       matRipple matTooltip="{{dish.rating}} " [ngStyle]="{ 'background-image': 'url(/api/images/dish/' + dish.id + '/1)' }">
-  </div>
+       matRipple matTooltip="{{dish.name}} "[ngStyle]="{ 'background-image': 'url(/api/images/dish/' + dish.id + '/1)' }">
+       
+          
+            
+        <b style="align-self: baseline; ">{{dish.rating}} of 5</b>
+
+        
+        </div>
 </div>
 
 
