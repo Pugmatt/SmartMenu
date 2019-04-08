@@ -66,4 +66,4 @@ This project would be created for restaurant consumers and restaurant owners, th
   Automatic: Testing can ran through the frontend by running the command "ng test"
 
   [Manual](https://docs.google.com/document/d/10S3pCeSfHFQu3lPjv2u-bs-VZtnsvvT5Gpby8xrgX4s/edit)
-- [Product Demonstration](https://www.youtube.com/watch?v=lmTWUYXJPZ4)
+- [Product Demonstration](https://www.youtube.com/watch?v=sw5s08xyx34)
