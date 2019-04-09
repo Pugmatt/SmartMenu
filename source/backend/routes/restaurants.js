@@ -58,7 +58,7 @@ router.get('/dishes/:id', function(req, res, next) {
                     var exists = false;
                     for (var c = 0; c < categories.length; c++) {
                         if (categories[c] && dishes[i].category == categories[c].name) {
-                            categories[c].push(dishes[i]);
+                            categories[c].dishes.push(dishes[i]);
                             exists = true;
                         }
                     }

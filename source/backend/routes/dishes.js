@@ -213,23 +213,23 @@ router.post('/add', func.isLoggedIn, function(req, res, next) {
                     category: req.body.category,
                     images: 0
                 }).save().then(function(dish) {
-                    if(!req.body.calories) {
-                        req.body.calories = -1;
+                    if(!req.body.nutritional.calories) {
+                        req.body.nutritional.calories = -1;
                     }
-                    if(!req.body.total_fat) {
-                        req.body.total_fat = -1;
+                    if(!req.body.nutritional.total_fat) {
+                        req.body.nutritional.total_fat = -1;
                     }
-                    if(!req.body.cholesterol) {
-                        req.body.cholesterol = -1;
+                    if(!req.body.nutritional.cholesterol) {
+                        req.body.nutritional.cholesterol = -1;
                     }
-                    if(!req.body.sodium) {
-                        req.body.sodium = -1;
+                    if(!req.body.nutritional.sodium) {
+                        req.body.nutritional.sodium = -1;
                     }
                     database.Nutritional.build({
-                        calories: req.body.calories,
-                        total_fat: req.body.total_fat,
-                        cholesterol: req.body.cholesterol,
-                        sodium: req.body.sodium,
+                        calories: req.body.nutritional.calories,
+                        total_fat: req.body.nutritional.total_fat,
+                        cholesterol: req.body.nutritional.cholesterol,
+                        sodium: req.body.nutritional.sodium,
                         dish: dish.index
                     }).save().then(function(nutritional){
                         res.json({dish: {

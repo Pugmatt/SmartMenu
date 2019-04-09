@@ -7,7 +7,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CreateDishService } from './create-dish.service';
 import {UserService} from "../../user.service";
 
-import { Dish } from '../dish';
+import { Dish, Nutritional } from '../dish';
 
 @Component({
   selector: 'app-create-dish',
@@ -33,6 +33,17 @@ export class CreateDishComponent implements OnInit {
       dish.category = values.category;
       dish.description = values.description;
       dish.restaurant = this.userService.user.restaurant;
+      if (values.calories || values.total_fat || values.sodium || values.cholesterol) {
+        dish.nutritional = new Nutritional();
+        if (values.calories)
+        dish.nutritional.calories = values.calories;
+        if (values.total_fat)
+          dish.nutritional.total_fat = values.total_fat;
+        if (values.sodium)
+          dish.nutritional.sodium = values.sodium;
+        if (values.cholesterol)
+          dish.nutritional.cholesterol = values.cholesterol;
+      }
       this.dishService.add(dish).subscribe(msg => {
         if(msg.error)
           this.error = msg.error;

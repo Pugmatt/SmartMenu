@@ -8,4 +8,12 @@ export class Dish {
     restaurant: string;
     images: string[];
     rating: number;
+    nutritional: Nutritional;
+}
+
+export class Nutritional {
+  calories: number;
+  total_fat: number;
+  cholesterol: number;
+  sodium: number;
 }

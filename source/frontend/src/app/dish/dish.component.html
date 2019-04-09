@@ -38,7 +38,7 @@
     <mat-grid-tile>
       <button type="submit" mat-raised-button *ngIf="dish.images.length > 0 && userService.user && userService.user.restaurant == dish.restaurant" (click)="removeImage()">Remove Image</button>
     </mat-grid-tile>
-      <mat-grid-tile [rowspan]="2" [colspan]="2">
+      <mat-grid-tile [rowspan]="2" [colspan]="1">
           <mat-card id="description">
             {{dish.description}}
           </mat-card>

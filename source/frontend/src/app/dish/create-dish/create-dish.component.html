@@ -11,6 +11,21 @@
       Category:
       <input name="category" id="" cols="30" rows="10" ngModel require/>
   </div>
+  <div class="form-group">
+    <b>Nutritional Facts</b> (Optional):
+  </div>
+    <div class="form-group">
+      Calories: <input name="calories" id="" cols="30" rows="10" ngModel require/>
+    </div>
+    <div class="form-group">
+      Total Fat: <input name="total_fat" id="" cols="30" rows="10" ngModel require/>
+    </div>
+    <div class="form-group">
+      Cholesterol: <input name="cholesterol" id="" cols="30" rows="10" ngModel require/>
+    </div>
+    <div class="form-group">
+      Sodium: <input name="sodium" id="" cols="30" rows="10" ngModel require/>
+    </div>
   <button type='submit' mat-raised-button>Add Dish</button>
 </form>
 <p id="error" *ngIf="error">{{error}}</p>

@@ -24,3 +24,7 @@ button {
 #admin {
   background-color: #F7F7F7;
 }
+
+.dishList {
+  display:inline-block;
+}
