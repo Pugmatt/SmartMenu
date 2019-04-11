@@ -4,11 +4,19 @@ img {
   max-height: 450px;
 }
 
+@media all and (max-width: 699px) {
+  img {
+    max-width: 250px;
+    max-height: 250px;
+  }
+}
+
 .category {
   margin: 10px;
 }
 
 .dish {
+  margin: 10px;
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;

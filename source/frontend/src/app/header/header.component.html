@@ -1,3 +1,8 @@
+<div class="circle">
+  <a routerLink="/">
+    <img id="logo" src="/assets/logo.png"/>
+  </a>
+</div>
 <div id="user-area" *ngIf="!user()">
   <button mat-stroked-button (click)="login()">Login</button>
   <button routerLink="/register" mat-stroked-button>Register</button>
@@ -8,5 +13,3 @@
   <button mat-stroked-button *ngIf="user().restaurant" routerLink="/restaurant/{{user().restaurant}}">My Restaurant</button>
   <button mat-stroked-button (click)="logout()">Logout</button>
 </div>
-<img id="logo" src="/assets/logo.png"/>
-<app-navigation></app-navigation>

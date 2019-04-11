@@ -4,5 +4,15 @@
 }
 
 #page-nav {
-    text-align: right;
+  text-align: right;
+}
+
+@media all and (max-width: 699px) {
+  #result-count {
+    text-align: center;
+  }
+
+  #page-nav {
+    text-align: center;
+  }
 }
