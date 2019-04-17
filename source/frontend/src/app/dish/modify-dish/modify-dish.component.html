@@ -4,12 +4,31 @@
     <input [(ngModel)]="name" name="name" id="" cols="30" rows="10" ngModel require/>
   </div>
   <div class="form-group">
+    Price:
+    <input [(ngModel)]="price" name="price" id="" cols="30" rows="10" ngModel require/>
+  </div>
+  <div class="form-group">
     <p>Description:</p>
     <textarea [(ngModel)]="description" name="description" id="" cols="30" rows="10" ngModel></textarea>
   </div>
   <div class="form-group">
     Category:
     <input [(ngModel)]="category" name="category" id="" cols="30" rows="10" ngModel require/>
+  </div>
+  <div class="form-group">
+    <b>Nutritional Facts</b> (Optional):
+  </div>
+  <div class="form-group">
+    Calories: <input [(ngModel)]="calories" type="number" name="calories" id="" cols="30" rows="10" ngModel require/>
+  </div>
+  <div class="form-group">
+    Total Fat: <input [(ngModel)]="total_fat" type="number" name="total_fat" id="" cols="30" rows="10" ngModel require/>
+  </div>
+  <div class="form-group">
+    Cholesterol: <input [(ngModel)]="cholesterol" type="number" name="cholesterol" id="" cols="30" rows="10" ngModel require/>
+  </div>
+  <div class="form-group">
+    Sodium: <input [(ngModel)]="sodium" type="number" name="sodium" id="" cols="30" rows="10" ngModel require/>
   </div>
   <button type='submit' mat-raised-button>Modify Dish</button>
 </form>

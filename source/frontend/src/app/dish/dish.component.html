@@ -1,9 +1,9 @@
 <div *ngIf="error || (dish && dish.error)">
   Dish not found
-  <button (click)="add()">Add</button>
 </div>
 <div *ngIf="!error && !dish.error">
   <h1>{{dish.name}}</h1>
+  <h3 style="color: grey;">${{dish.price}}</h3>
   <mat-grid-list cols="2" rowHeight="100px">
       <mat-grid-tile [colspan]="2" *ngIf="userService.user && userService.user.restaurant == dish.restaurant">
         <button type="submit" mat-raised-button (click)="remove()">Remove Dish</button>

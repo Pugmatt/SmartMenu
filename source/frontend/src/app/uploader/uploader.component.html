@@ -1,6 +1,6 @@
 <div id="fileSelector">
   <input type="file" (change)="fileChange($event)" name="fileUpload" id="fileUpload"
-         ng2FileSelect [uploader] = "uploader">
+         ng2FileSelect [uploader] = "uploader" accept="image/*">
 </div>
 
 <div class="row uploadList" *ngFor="let item of uploader.queue">

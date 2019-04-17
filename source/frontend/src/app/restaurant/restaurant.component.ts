@@ -12,6 +12,7 @@ import { UploaderComponent } from '../uploader/uploader.component';
 import { Restaurant } from "../restaurant"
 import { Dish } from "../dish/dish";
 import {NgModel} from "@angular/forms";
+import {ModifyRestaurantComponent} from "./modify-restaurant/modify-restaurant.component";
 
 @Component({
   selector: 'app-restaurant',
@@ -91,6 +92,17 @@ export class RestaurantComponent implements OnInit {
 
     return finalDishes;
     
+  }
+
+  modify() {
+    let dialogRef = this.dialog.open(ModifyRestaurantComponent, {
+      data: {restaurant: this.restaurant }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.restaurant = result;
+      }
+    });
   }
 
 }

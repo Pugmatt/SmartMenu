@@ -3,7 +3,7 @@ module.exports.setup = function(config) {
 
     // To be changed
     config.database.user = "postgres";
-    config.database.password = "admin";
+    config.database.password = "";
     config.database.host = "postgres";
     config.database.port = "5432";
 

@@ -8,6 +8,7 @@ export class Dish {
     restaurant: string;
     images: string[];
     rating: number;
+    price: number;
     nutritional: Nutritional;
 }
 

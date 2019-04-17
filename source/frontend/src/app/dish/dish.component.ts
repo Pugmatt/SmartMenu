@@ -104,12 +104,12 @@ export class DishComponent implements OnInit {
       data: { dish: this.dish }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log("fwefwe");
-      console.log(result);
       if (result) {
         this.dish.name = result.name;
         this.dish.description = result.description;
         this.dish.category = result.category;
+        this.dish.nutritional = result.nutritional;
+        this.dish = this.dish;
       }
     });
   }
@@ -158,7 +158,7 @@ export class DishComponent implements OnInit {
                 root.router.navigate(['/dish', root.route.snapshot.params.id]));
           }
         }}
-      });        
+      });
     }
 
   // Create range for gallery looping through {{disk.images}} images

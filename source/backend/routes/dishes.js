@@ -200,29 +200,39 @@ router.post('/reviews/add', func.isLoggedIn, function(req, res, next) {
 });
 
 router.post('/add', func.isLoggedIn, function(req, res, next) {
-    if(req.body && req.body.name && req.body.category && req.body.description && req.body.restaurant) {
-        if(!(typeof req.body.name == 'string' && typeof req.body.category == 'string' && typeof req.body.description == 'string' &&
+    if(req.body && req.body.name && req.body.price && req.body.category && req.body.description && req.body.restaurant) {
+        if(!(typeof req.body.name == 'string' && typeof req.body.price == 'string' && !isNaN(req.body.price) && typeof req.body.category == 'string' && typeof req.body.description == 'string' &&
         typeof req.body.restaurant  == 'string' && req.body.description.length <= 2000 && req.body.name.length <= 50 && req.body.name.length > 0 && req.body.category.length > 0 && req.body.restaurant.length > 0))
             res.json({error: "Invalid variable types"});
         else {
             if(database.Restaurant.decodeID(req.body.restaurant) == req.user.restaurant) {
                 database.Dish.build({
                     name: req.body.name,
+                    price: req.body.price,
                     description: req.body.description,
                     restaurant: req.user.restaurant,
                     category: req.body.category,
                     images: 0
                 }).save().then(function(dish) {
-                    if(!req.body.nutritional.calories) {
+                    if(req.body.nutritional) {
+                        if (!req.body.nutritional.calories) {
+                            req.body.nutritional.calories = -1;
+                        }
+                        if (!req.body.nutritional.total_fat) {
+                            req.body.nutritional.total_fat = -1;
+                        }
+                        if (!req.body.nutritional.cholesterol) {
+                            req.body.nutritional.cholesterol = -1;
+                        }
+                        if (!req.body.nutritional.sodium) {
+                            req.body.nutritional.sodium = -1;
+                        }
+                    }
+                    else {
+                        req.body.nutritional = {};
                         req.body.nutritional.calories = -1;
-                    }
-                    if(!req.body.nutritional.total_fat) {
                         req.body.nutritional.total_fat = -1;
-                    }
-                    if(!req.body.nutritional.cholesterol) {
                         req.body.nutritional.cholesterol = -1;
-                    }
-                    if(!req.body.nutritional.sodium) {
                         req.body.nutritional.sodium = -1;
                     }
                     database.Nutritional.build({
@@ -254,8 +264,8 @@ router.post('/add', func.isLoggedIn, function(req, res, next) {
 });
 
 router.post('/modify', func.isLoggedIn, function(req, res, next) {
-    if(req.body && req.body.id && req.body.name && req.body.category && req.body.description && req.body.restaurant) {
-        if(!(typeof req.body.id == 'string' && typeof req.body.name == 'string' && typeof req.body.category == 'string' && typeof req.body.description == 'string' &&
+    if(req.body && req.body.id && req.body.name && req.body.price && !isNaN(req.body.price) && req.body.category && req.body.description && req.body.restaurant) {
+        if(!(typeof req.body.id == 'string' && !isNaN(req.body.price) && typeof req.body.name == 'string' && typeof req.body.category == 'string' && typeof req.body.description == 'string' &&
             typeof req.body.restaurant  == 'string' && req.body.description.length <= 2000 && req.body.name.length <= 50 && req.body.name.length > 0 && req.body.category.length > 0 && req.body.restaurant.length > 0))
             res.json({error: "Invalid variable types"});
         else {
@@ -266,17 +276,45 @@ router.post('/modify', func.isLoggedIn, function(req, res, next) {
                     }
                 }).then(function(dish) {
                     dish.name = req.body.name;
+                    dish.price = req.body.price;
                     dish.description = req.body.description;
                     dish.category = req.body.category;
+                    if(req.body.nutritional) {
+                        if (!req.body.nutritional.calories) {
+                            req.body.nutritional.calories = -1;
+                        }
+                        if (!req.body.nutritional.total_fat) {
+                            req.body.nutritional.total_fat = -1;
+                        }
+                        if (!req.body.nutritional.cholesterol) {
+                            req.body.nutritional.cholesterol = -1;
+                        }
+                        if (!req.body.nutritional.sodium) {
+                            req.body.nutritional.sodium = -1;
+                        }
+                    }
+                    else {
+                        req.body.nutritional = {};
+                        req.body.nutritional.calories = -1;
+                        req.body.nutritional.total_fat = -1;
+                        req.body.nutritional.cholesterol = -1;
+                        req.body.nutritional.sodium = -1;
+                    }
                     database.Nutritional.find({
                         where: {
                             dish: database.Dish.decodeID(req.body.id)
-                        },
-                        raw: true
+                        }
                     }).then(function (nutritional) {
-                        delete nutritional.index;
-                        dish.nutritional = nutritional;
-                        dish.save().then(function() {
+                        if(nutritional) {
+                            nutritional.calories = req.body.nutritional.calories;
+                            nutritional.total_fat = req.body.nutritional.total_fat;
+                            nutritional.cholesterol = req.body.nutritional.cholesterol;
+                            nutritional.sodium = req.body.nutritional.sodium;
+                            nutritional.save();
+                            dish.nutritional = req.body.nutritional;
+                        }
+                        dish.save().then(function () {
+                            delete dish.nutritional.index;
                             res.json({dish: dish});
                         });
                     }).catch(function(err) { res.json({error: "Database error: " + err}); });

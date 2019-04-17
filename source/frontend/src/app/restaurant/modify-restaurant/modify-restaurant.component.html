@@ -1,0 +1,35 @@
+<form (ngSubmit)="onSubmit(modifyRestaurant)" #modifyRestaurant="ngForm">
+  <div class="form-group">
+    <label for="name">Company's Name </label>
+    <input [(ngModel)]="name" id="name" type="text" class="form-control"
+           name="name" ngModel required>
+  </div>
+  <h2>Restaurant Info</h2>
+  <div class="form-group">
+    <label for="state">State </label>
+    <input [(ngModel)]="state" id="state" type="text" class="form-control"
+           name="state" ngModel required>
+    <label for="city">City </label>
+    <input [(ngModel)]="city" id="city" type="text" class="form-control"
+           name="city" ngModel required>
+  </div>
+  <div class="form-group">
+    <label for="zip">ZIP </label>
+    <input [(ngModel)]="zip" id="zip" type="text" class="form-control"
+           name="zip" ngModel required>
+    <label for="address">Address </label>
+    <input [(ngModel)]="address" id="address" type="text" class="form-control"
+           name="address" ngModel required>
+  </div>
+  <div class="form-group">
+    <p>
+      <label for="name">Company Description </label>
+    </p>
+    <textarea [(ngModel)]="description" id="description" class="form-control"
+              name="description" ngModel rows="10" cols="50" required></textarea>
+  </div>
+  <div class="panel-footer">
+    <button class="btn btn-primary" type="submit" mat-raised-button>Submit</button>
+  </div>
+</form>
+<p id="error" *ngIf="error">{{error}}</p>

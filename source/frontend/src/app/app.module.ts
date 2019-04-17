@@ -39,6 +39,7 @@ import { UploaderComponent } from './uploader/uploader.component';
 import { ReviewComponent } from "./review/review.component";
 import { NutritionalFactsComponent } from './dish/nutritional-facts/nutritional-facts.component';
 import { ModifyDishComponent } from './dish/modify-dish/modify-dish.component';
+import { ModifyRestaurantComponent } from './restaurant/modify-restaurant/modify-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -62,9 +63,10 @@ import { ModifyDishComponent } from './dish/modify-dish/modify-dish.component';
     UploaderComponent,
     ReviewComponent,
     NutritionalFactsComponent,
-    ModifyDishComponent
+    ModifyDishComponent,
+    ModifyRestaurantComponent
   ],
-  entryComponents: [LoginComponent, CreateDishComponent, UploaderComponent, ReviewComponent, ModifyDishComponent],
+  entryComponents: [LoginComponent, CreateDishComponent, UploaderComponent, ReviewComponent, ModifyDishComponent, ModifyRestaurantComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

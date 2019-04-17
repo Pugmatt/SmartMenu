@@ -114,7 +114,7 @@ infoValid(user) {
     else if(user.restaurant.state <= 1)
       return "Invalid state";
     else if(user.restaurant.city <= 1)
-      return "Invalid state";
+      return "Invalid city";
     else if(user.restaurant.zip <= 1 || !(/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(user.restaurant.zip)))
       return "Invalid zip code";
     else if(user.restaurant.address >= 1)

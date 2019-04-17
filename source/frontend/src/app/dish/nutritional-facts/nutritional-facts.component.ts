@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit, OnChanges, DoCheck, SimpleChanges} from '@angular/core';
 import { Dish } from '../dish';
 
 export interface NutritionalFacts {
@@ -11,8 +11,9 @@ export interface NutritionalFacts {
   templateUrl: './nutritional-facts.component.html',
   styleUrls: ['./nutritional-facts.component.css']
 })
-export class NutritionalFactsComponent implements OnInit {
+export class NutritionalFactsComponent implements OnInit, DoCheck {
   @Input() dish;
+  oldDish;
   ELEMENT_DATA: NutritionalFacts[];
   displayedColumns: string[] = ['type', 'amount'];
   dataSource;
@@ -29,5 +30,17 @@ export class NutritionalFactsComponent implements OnInit {
     ];
     this.dataSource = this.ELEMENT_DATA;
   }
+
+  ngDoCheck() {
+        this.ELEMENT_DATA = [
+          { type: 'Calories', amount: (this.dish.nutritional.calories < 0 ? 'N/A' : this.dish.nutritional.calories)},
+          { type: 'Total Fat', amount: (this.dish.nutritional.total_fat < 0 ? 'N/A' : this.dish.nutritional.total_fat)},
+          { type: 'Cholesterol', amount: (this.dish.nutritional.cholesterol < 0 ? 'N/A' : this.dish.nutritional.cholesterol)},
+          { type: 'Sodium', amount: (this.dish.nutritional.sodium < 0 ? 'N/A' : this.dish.nutritional.sodium)},
+        ];
+        this.dataSource = this.ELEMENT_DATA;
+  }
+
+
 
 }

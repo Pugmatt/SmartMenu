@@ -22,6 +22,12 @@ export class RestaurantInfoService {
     return this.http.get<CategorizedDishes[]>(this.url + "/dishes/" + id);
   }
 
+  public modify (restaurant: Restaurant): Observable<ModifyRestaurantResponse> {
+    return this.http.post<ModifyRestaurantResponse>(this.url + "/modify", restaurant, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
+  }
+
 }
 
 export class CategorizedDishes {
@@ -29,4 +35,7 @@ export class CategorizedDishes {
   dishes: Dish[];
 }
 
-
+export class ModifyRestaurantResponse {
+  error: String;
+  restaurant: Restaurant;
+}

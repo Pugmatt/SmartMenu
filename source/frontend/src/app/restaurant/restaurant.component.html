@@ -4,6 +4,7 @@
 <div *ngIf="userService.user && restaurant.id == userService.user.restaurant">
   <mat-card id="admin">
     <h3>Owner Tools</h3>
+    <button type="submit" mat-raised-button (click)="modify()">Modify Details</button>
     <button type="submit" mat-raised-button (click)="uploader()">Change Image</button>
     <button type="submit" mat-raised-button (click)="addDishes()">Add Dish</button>
   </mat-card>
@@ -15,9 +16,11 @@
   <h1>Top 5 dishes</h1>
 </b>
 <div class='dishList' *ngFor="let dish of organizedDishes" routerLink="/dish/{{dish.id}}">
+  <h4>{{dish.name}}</h4>
   <div class="dish mat-elevation-z4"
-       matRipple matTooltip="{{dish.name}} ({{dish.rating}} stars out of 5)"[ngStyle]="{ 'background-image': 'url(/api/images/dish/' + dish.id + '/1)' }">
+       matRipple matTooltip="{{dish.rating}} stars out of 5"[ngStyle]="{ 'background-image': 'url(/api/images/dish/' + dish.id + '/1)' }">
   </div>
+  <span style="color: grey;font-size: 14px;">${{dish.price}}</span>
 </div>
 </div>
 
@@ -35,9 +38,11 @@
     </mat-card-header>
     <mat-card-content>
       <div class='dishList' *ngFor="let dish of containsSearchTerms(category.dishes)" routerLink="/dish/{{dish.id}}">
+        <h4>{{dish.name}}</h4>
         <div class="dish mat-elevation-z4"
-             matRipple matTooltip="{{dish.name}}" [ngStyle]="{ 'background-image': 'url(/api/images/dish/' + dish.id + '/1)' }">
+             matRipple matTooltip="{{dish.description}}" [ngStyle]="{ 'background-image': 'url(/api/images/dish/' + dish.id + '/1)' }">
         </div>
+        <span style="color: grey;font-size: 14px;">${{dish.price}}</span>
       </div>
     </mat-card-content>
   </mat-card>

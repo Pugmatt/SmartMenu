@@ -21,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
         name: DataTypes.TEXT,
         description: DataTypes.TEXT,
         rating: DataTypes.INTEGER,
+        price: DataTypes.DECIMAL,
         images: DataTypes.INTEGER,
     }, {
         tableName: 'dishes',
